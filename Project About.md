@@ -2,4 +2,6 @@
 
 This project will be a pintrest clone, which is a photo sharing app. It'll have a drag and drop feature to add images, a group image feature and a Log in page. 
 
+We will be running database: for application database PostgresSQL and for the images a google storage.
+
 ### In the About.md add a paragraph or two describing the general function of your proposed project. No programming or code design is required at this time.
