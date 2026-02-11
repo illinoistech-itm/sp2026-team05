@@ -11,7 +11,7 @@ Check Discord channel twice per day to be updated what needs to be done.
 ### Consequences
 Consequences will be decided by the team, when a member doesnt communicate, or doesn't do their task.
 
-*Project manager will decide consequesnce if the team can't*
+*Project manager will decide consequences if the team can't*
 
 Possible consequences: 
 Verbal Warning 
