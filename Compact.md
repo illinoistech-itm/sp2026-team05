@@ -24,3 +24,4 @@ If a team member does not meet expectations, the issue will be addressed during 
 
 ### Team Signatures
 Hieu Do
+Hailie Jade Juliano  hjuliano@hawk.illinoistech.edu
