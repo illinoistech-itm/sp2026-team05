@@ -23,7 +23,7 @@ Dropped from the team
 If a team member does not meet expectations, the issue will be addressed during a team meeting. The team will help bring the member up to speed on missed information or tasks. The member will then be assigned a new task and will be required to provide regular progress updates to ensure accountability.
 
 ### Team Signatures
-- Hieu Do
+- Hieu Do hdo2@hawk.illinoistech.edu
 - Hailie Jade Juliano  hjuliano@hawk.illinoistech.edu
 - Jian Liang  jliang24@hawk.illinoistech.edu
 - Juan Perezchica jperezchica@hawk.illinoistech.edu
