@@ -27,3 +27,5 @@ If a team member does not meet expectations, the issue will be addressed during 
 - Hailie Jade Juliano  hjuliano@hawk.illinoistech.edu
 - Jian Liang  jliang24@hawk.illinoistech.edu
 - Juan Perezchica jperezchica@hawk.illinoistech.edu
+- Bryan Ruan
+bruan@hawk.illinoistech.edu
