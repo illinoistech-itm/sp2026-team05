@@ -1,6 +1,7 @@
 .main-content {
-    display: none;
+    display: block;
 }
+/*main content display none when block*/
 
 /*Splash screen*/
 .splash-screen {
@@ -18,7 +19,7 @@
     flex-direction: column;
 }
 
-.splash-screen #logo {
+.splash-screen #splash-logo {
     width: 25vh;
 }
 
@@ -40,4 +41,96 @@ body {
     height: 100vh;
     margin: 0%;
     font-family: 'Fragment Mono', monospace;
+}
+
+#logo {
+    width: 8vh;
+    padding: 1em;
+}
+
+/*Log in page styling*/
+.log-in{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 auto;
+    height: 70vh;
+}
+.block-label {
+    color: white;
+    width: 34vh;          /* same width as .block */
+    text-align: left;
+    margin-bottom: 0.2em;
+    font-size: 1.8vh;
+}
+
+.block {
+    background-color: #10101E;
+    color: white;
+    padding: 1em;
+    display: flex;
+    align-items: right;
+    flex-direction: column;
+    width: 30vh;
+    border-radius: 5px;
+    border: 1px solid white;
+}
+
+.block form label {
+    margin: 0em;
+    font-weight: 300;
+    font-size: 1.8vh;
+}
+
+.block form input {
+    margin: 0.5em 0 0.5em 0;
+    border-radius: 4px;
+    padding: 0.7em 0 0.7em 0.3em;
+    border: 0px;
+}
+
+::placeholder {
+    color: #B3B3B3;
+}
+
+#email {
+    margin-bottom: 1.2em;
+}
+
+#submit {
+    background-color: #00C6C2;
+    color: white;
+    text-decoration: underline;
+    margin-bottom: 0;
+}
+
+#forgot-password {
+    text-decoration: underline;
+    font-size: 1.8vh;
+    margin: 0.1em 0.1em 1em;
+    color: #D9D9D9;
+}
+
+.block form{
+    display: flex;
+    flex-direction: column;
+}
+
+.block button{
+    text-decoration: underline;
+    border-radius: 4px;
+    margin: 0.5em 0 0.5em 0;
+    border: 0;
+    padding: 0.7em 0 0.7em 0.3em;
+}
+
+#log-in {
+    background-color: #00C6C2;
+    color: white;
+}
+
+#sign-up{
+    background-color: #F9F2D7;
+    color: #10101E;
 }
