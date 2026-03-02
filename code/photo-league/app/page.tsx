@@ -2,9 +2,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-midnight font-sans">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 sm:items-start bg-gradient-to-t from-midnight to-photoblue">
-        //This is for the logo at the top
+    <div className="relative min-h-screen items-center justify-center bg-midnight font-sans">
         <div className="absolute top-0 left-0 w-[10vh] h-[10vh] p-[1em]">
             <Image 
                 src="/logo.svg"
@@ -14,7 +12,15 @@ export default function Home() {
                 className="object-contain"
             />
         </div>
-        
+      <main className="flex flex-col items-center justify-center min-h-screen w-full bg-gradient-to-t from-midnight to-photoblue">
+        <div className="w-[31vh]">
+            <p className="relative text-white text-xs mb-1">Log in </p>
+            <div className="flex bg-midnight border-white border-[1px] w-[31vh] h-[40vh] rounded-sm p-4 justify-center">
+                <button className="bg-photoblue tx-white text-sm underline rounded-sm h-9 px-9">
+                    Log in with Google
+                </button>
+            </div>
+        </div>
       </main>
     </div>
   );
