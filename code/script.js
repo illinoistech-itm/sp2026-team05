@@ -4,3 +4,7 @@ setTimeout(function() {
     document.querySelector('.splash-screen').style.display = 'none';
     document.querySelector('.main-content').style.display = 'block';
 }, 3100); // Adjust time to match your CSS animation duration*/
+
+
+//This is a Test 
+
