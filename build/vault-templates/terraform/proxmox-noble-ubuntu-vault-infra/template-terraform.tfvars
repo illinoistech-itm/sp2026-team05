@@ -35,4 +35,3 @@ memory    = 4096  # Memory size of a VM
 cores     = 1     # vCPU = cores * sockets
 sockets   = 1     # vCPU = cores * sockets
 disk_size = "30G" # Disk size of a VM - min size must equal to the disk size of your clone image
-    
