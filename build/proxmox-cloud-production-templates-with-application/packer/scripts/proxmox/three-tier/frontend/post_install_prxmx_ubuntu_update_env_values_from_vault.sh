@@ -8,9 +8,9 @@ set -v
 # this is a hack to pass environment variables into the vm instances
 ###############################################################################
 
-sudo sed -i "s/FQDN=/FQDN=$FQDN/" /home/flaskuser/.env
-sudo sed -i "s/DBUSER=/DBUSER=$DBUSER/" /home/flaskuser/.env
-sudo sed -i "s/DBPASS=/DBPASS=$DBPASS/" /home/flaskuser/.env
-sudo sed -i "s/DATABASE=/DATABASE=$DATABASE/" /home/flaskuser/.env
-sudo sed -i "s/CLIENTID=/CLIENTID=$CLIENTID/" /home/flaskuser/.env
-sudo sed -i "s/CLIENTSECRET=/CLIENTSECRET=$CLIENTSECRET/" /home/flaskuser/.env
+sudo sed -i "s/FQDN=/FQDN=$FQDN/" /home/nextjsuser/.env
+sudo sed -i "s/DBUSER=/DBUSER=$DBUSER/" /home/nextjsuser/.env
+sudo sed -i "s/DBPASS=/DBPASS=$DBPASS/" /home/nextjsuser/.env
+sudo sed -i "s/DATABASE=/DATABASE=$DATABASE/" /home/nextjsuser/.env
+sudo sed -i "s/CLIENTID=/CLIENTID=$CLIENTID/" /home/nextjsuser/.env
+sudo sed -i "s/CLIENTSECRET=/CLIENTSECRET=$CLIENTSECRET/" /home/nextjsuser/.env

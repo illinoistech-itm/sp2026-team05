@@ -18,7 +18,7 @@ cd /home/vagrant/sp2026-team05/code/express-static-app/
 # Use NPM package manager to install needed dependencies to run our EJS app
 # https://github.com/motdotla/dotenv -- create a .env file to pass environment variables
 # dotenv mysql2 packages will be installed in the package.json file
-sudo npm install -g --save express ejs pm2
+sudo npm install -g --save express pm2
 
 # pm2.io is an application service manager for Javascript applications
 # Using pm2 start the express js application as the user vagrant
