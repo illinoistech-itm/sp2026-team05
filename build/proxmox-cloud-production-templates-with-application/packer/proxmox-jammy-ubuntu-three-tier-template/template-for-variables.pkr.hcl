@@ -50,6 +50,15 @@ locals {
   DBPASS = vault("/secret/data/DB","DBPASS")
 }
 
+##Client 
+locals {
+  CLIENTID = vault("/secret/data/CLIENT","CLIENTID")
+}
+
+locals {
+  CLIENTSECRET = vault("/secret/data/CLIENT","CLIENTSECRET")
+}
+
 # This variable is the IP address range to allow your connections
 # The SQL wildcard is the %
 # 10.110.%.%  could also be a FQDN 
