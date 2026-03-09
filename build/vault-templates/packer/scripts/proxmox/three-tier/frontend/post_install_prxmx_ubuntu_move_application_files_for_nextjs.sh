@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Change directory to the location of your Next project code
-cd /home/vagrant/team-05/code/nextjs-project/
+cd /home/vagrant/sp2026-team05/code/nextjs-project/
 
 # Run NPM install to download all dependencies from the package.json
 # We don't want to be pushing node_module directory around!
