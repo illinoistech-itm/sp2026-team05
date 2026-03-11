@@ -73,7 +73,7 @@ resource "proxmox_vm_qemu" "load-balancer" {
     bridge = "vmbr0"
     # Edit in the terraform.tfvars and add your assigned mac address
     # https://github.com/illinoistech-itm/jhajek/tree/master/itmt-430/three-tier-tutorial#how-to-assign-a-mac-address-to-get-a-static-ip
-    macaddr = var.lb-macaddr
+    macaddr = "bc:24:11:00:00:1F"
   }
 
   network {

@@ -9,4 +9,4 @@ cd /home/vagrant
 ####################################################################
 # Note - change "team-00.git" to be your private repo name (hawk ID) #
 ####################################################################
-sudo -u vagrant git clone git@github.com:illinoistech-itm/team-00.git
+sudo -u vagrant git clone git@github.com:illinoistech-itm/sp2026-team05.git
