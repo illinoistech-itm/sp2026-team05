@@ -743,8 +743,8 @@ build {
     execute_command = "echo 'vagrant' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'"
     scripts = ["../scripts/proxmox/three-tier/frontend/post_install_prxmx_frontend-firewall-open-ports.sh",
       "../scripts/proxmox/three-tier/frontend/post_install_prxmx_generate_self_signed_certs.sh",
-      "../scripts/proxmox/three-tier/frontend/post_install_prxmx_frontend-install_nextjs_service_dependencies.sh",
       "../scripts/proxmox/three-tier/frontend/post_install_prxmx_frontend-install_nodejs.sh",
+      "../scripts/proxmox/three-tier/frontend/post_install_prxmx_frontend-install_nextjs_service_dependencies.sh",
       "../scripts/proxmox/three-tier/frontend/post_install_prxmx_ubuntu_move_application_files_for_nextjs.sh",
       "../scripts/proxmox/three-tier/frontend/post_install_prxmx_ubuntu_update_env_values_from_vault.sh"]
     environment_vars = ["DBUSER=${local.DBUSER}", "DBPASS=${local.DBPASS}", "DATABASE=${local.DATABASE}", "FQDN=${local.FQDN}", "CLIENTID=${local.CLIENTID}", "CLIENTSECRET=${local.CLIENTSECRET}"]
