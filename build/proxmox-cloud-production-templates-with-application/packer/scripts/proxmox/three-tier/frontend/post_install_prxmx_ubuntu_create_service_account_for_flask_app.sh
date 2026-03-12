@@ -10,7 +10,4 @@ echo "Create system account and group flaskuser ..."
 #sudo adduser --system --group flaskuser
 # Using Ubuntu 24.04 default behavior changed to not create a home directory
 # for a system account
-#sudo adduser --system --home /home/flaskuser --group flaskuser
-
-#creates a nextjs user
-sudo adduser --system --home /home/nextjsuser --group nextjsuser
+sudo adduser --system --home /home/flaskuser --group flaskuser
