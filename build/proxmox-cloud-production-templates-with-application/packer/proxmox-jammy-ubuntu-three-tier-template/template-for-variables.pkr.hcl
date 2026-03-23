@@ -52,11 +52,11 @@ locals {
 
 # this is for the client 
 locals {
-  CLIENTID = vault("/secret/data/CL","CLIENTID")
+  CLIENTID = try(vault("secret/data/myapp", "data.CLIENTID"), "mock_clientid")
 }
 
 locals {
-  CLIENTSECRET = vault("/secret/data/CL","CLIENTSECRET")
+  CLIENTSECRET = try(vault("secret/data/myapp", "data.CLIENTSECRET"), "mock_clientsecret")
 }
 
 # This variable is the IP address range to allow your connections
