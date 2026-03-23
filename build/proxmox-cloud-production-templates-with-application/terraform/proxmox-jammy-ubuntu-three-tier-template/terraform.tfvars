@@ -30,12 +30,12 @@ consul-service-tag-contact-email = "hjuliano@hawk.illinoistech.edu" # Used as pa
 # Name the template your created via Packer for Terraform to use to deploy
 # instances from
 ###############################################################################
-frontend-template_to_clone = "" # The name of the template to clone
-backend-template_to_clone  = "" # The name of the template to clone
-lb-template_to_clone       = "" # The name of the template to clone
-fe-tags                    = "" # Tags separated by commas: fe,team00
-lb-tags                    = "" # Tags separated by commas: lb,team00
-be-tags                    = "" # Tags separated by commas: be,team00
+frontend-template_to_clone = "team05-fe-template" # The name of the template to clone
+backend-template_to_clone  = "team05-be-template" # The name of the template to clone
+lb-template_to_clone       = "team05-lb-template" # The name of the template to clone
+FE-TAGS                    = "fe:team05:hjj" # Tags separated by commas: fe,team00
+LB-TAGS                    = "lb:team05:hjj" # Tags separated by commas: lb,team00
+BE-TAGS                    = "be:team05:hjj" # Tags separated by commas: be,team00
 ###############################################################################
 # Customize instance hardware settings
 ###############################################################################
