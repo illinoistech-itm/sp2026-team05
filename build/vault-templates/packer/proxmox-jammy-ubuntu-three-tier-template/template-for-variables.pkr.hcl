@@ -41,8 +41,16 @@ locals {
 }
 
 # This will be the non-root user account name
-locals { 
+locals {
   DBUSER = vault("/secret/data/DB","DBUSER")
+}
+
+locals {
+  CLIENTID = vault("/secret/data/CLIENT","CLIENTID")
+}
+
+locals {
+  CLIENTSECRET = vault("/secret/data/CLIENT","CLIENTSECRET")
 }
 
 # This will be the Database user (non-root) password setup
@@ -52,19 +60,19 @@ locals {
 
 # This variable is the IP address range to allow your connections
 # The SQL wildcard is the %
-# 10.110.%.%  could also be a FQDN 
+# 10.110.%.%  could also be a FQDN
 locals {
   CONNECTIONFROMIPRANGE = vault("/secret/data/DB","CONNECTIONFROMIPRANGE")
 }
 
 # This will be the fully qualified domain name: team-00-be-vm0.service.consul
 locals {
-  FQDN = vault("/secret/data/DB","DBURL") 
+  FQDN = vault("/secret/data/DB","DBURL")
 }
 
 # This will be the Database name you default to (like posts or comments or customers)
 locals {
-  DATABASE = vault("/secret/data/DB","DATABASENAME") 
+  DATABASE = vault("/secret/data/DB","DATABASENAME")
 }
 
 variable "MEMORY" {
@@ -95,35 +103,35 @@ variable "BIND_ADDRESS" {
 # This is the name of the Virtual Machine Template you want to create
 variable "BE-VMNAME" {
   type    = string
-  default = "teamXX-be-template"
+  default = "team05-be-template"
 }
 
 variable "LB-VMNAME" {
   type    = string
-  default = "teamXX-lb-template"
+  default = "team05-lb-template"
 }
 
 variable "FE-VMNAME" {
   type    = string
-  default = "teamXX-fe-template"
+  default = "team05-fe-template"
 }
 
 variable "BE-TAGS" {
   # Place your initials first then team name and any other tag seperated via ;
   type    = string
-  default = "team;type-of-server"
+  default = "hjj;team05;BE"
 }
 
 variable "LB-TAGS" {
   # Place your initials first then team name and any other tag seperated via ;
   type    = string
-  default = "team;type-of-server"
+  default = "hjj;team05;LB"
 }
 
 variable "FE-TAGS" {
   # Place your initials first then team name and any other tag seperated via ;
   type    = string
-  default = "team;type-of-server"
+  default = "hjj;team05;FE"
 }
 
 variable "iso_checksum" {

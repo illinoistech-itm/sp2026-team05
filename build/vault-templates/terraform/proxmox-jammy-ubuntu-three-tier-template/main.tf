@@ -61,7 +61,7 @@ resource "proxmox_vm_qemu" "load-balancer" {
   scsihw    = "virtio-scsi-pci"
   boot      = "order=virtio0"
   agent     = 1
-  tags      = var.lb-tags
+  tags      = var.LB-TAGS
 
   ipconfig0 = "ip=dhcp"
   ipconfig1 = "ip=dhcp"
@@ -168,7 +168,7 @@ resource "proxmox_vm_qemu" "frontend-webserver" {
   scsihw    = "virtio-scsi-pci"
   boot      = "order=virtio0"
   agent     = 1
-  tags      = var.fe-tags
+  tags      = var.FE-TAGS
 
   ipconfig0 = "ip=dhcp"
   ipconfig1 = "ip=dhcp"
@@ -265,7 +265,7 @@ resource "proxmox_vm_qemu" "backend-database" {
   scsihw    = "virtio-scsi-pci"
   boot      = "order=virtio0"
   agent     = 1
-  tags      = var.be-tags
+  tags      = var.BE-TAGS
 
   ipconfig0 = "ip=dhcp"
   ipconfig1 = "ip=dhcp"

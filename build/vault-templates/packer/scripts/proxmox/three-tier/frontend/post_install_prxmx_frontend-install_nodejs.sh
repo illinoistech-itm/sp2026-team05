@@ -1,5 +1,6 @@
 #!/bin/bash
-
+set -e
+set -x
 # Install and prepare frontend web server - Example for ExpressJS/NodeJS
 
 sudo apt-get update
@@ -13,12 +14,18 @@ sudo -E bash nodesource_setup.sh
 sudo apt-get install -y nodejs
 
 # Change directory to the location of your JS code
-cd /home/vagrant/team-00/code/express-static-app/
+cd /home/vagrant/sp2026-team05/code/nextjs-project/
+
+# install project dependencies
+sudo -u vagrant npm install
+
+# build nextjs production build
+sudo -u vagrant npm run build
 
 # Use NPM package manager to install needed dependencies to run our EJS app
 # https://github.com/motdotla/dotenv -- create a .env file to pass environment variables
 # dotenv mysql2 packages will be installed in the package.json file
-sudo npm install -g --save express ejs pm2
+sudo npm install -g express ejs pm2
 
 # pm2.io is an application service manager for Javascript applications
 # Using pm2 start the express js application as the user vagrant
@@ -26,7 +33,6 @@ sudo -u vagrant pm2 start server.js
 
 # This creates your javascript application service file
 sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u vagrant --hp /home/vagrant
-
-# This saves which files we have already started -- so pm2 will 
+# This saves which files we have already started -- so pm2 will
 # restart them at boot
 sudo -u vagrant pm2 save

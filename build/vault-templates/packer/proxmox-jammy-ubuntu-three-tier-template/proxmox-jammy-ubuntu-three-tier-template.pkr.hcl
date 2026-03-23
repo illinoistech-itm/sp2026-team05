@@ -75,7 +75,7 @@ source "proxmox-iso" "backend-database82" {
   ssh_password             = "${local.SSHPW}"
   ssh_username             = "${local.SSHUSER}"
   ssh_timeout              = "28m"
-  template_description     = "A Packer template for Ubuntu Noble Database" 
+  template_description     = "A Packer template for Ubuntu Noble Database"
   vm_name                  = "${var.BE-VMNAME}"
   tags                     = "${var.BE-TAGS}"
 }
@@ -269,7 +269,7 @@ source "proxmox-iso" "backend-database83" {
   ssh_password             = "${local.SSHPW}"
   ssh_username             = "${local.SSHUSER}"
   ssh_timeout              = "28m"
-  template_description     = "A Packer template for Ubuntu Noble Database" 
+  template_description     = "A Packer template for Ubuntu Noble Database"
   vm_name                  = "${var.BE-VMNAME}"
   tags                     = "${var.BE-TAGS}"
 }
@@ -464,7 +464,7 @@ source "proxmox-iso" "backend-database84" {
   ssh_password             = "${local.SSHPW}"
   ssh_username             = "${local.SSHUSER}"
   ssh_timeout              = "28m"
-  template_description     = "A Packer template for Ubuntu Noble Database" 
+  template_description     = "A Packer template for Ubuntu Noble Database"
   vm_name                  = "${var.BE-VMNAME}"
   tags                     = "${var.BE-TAGS}"
 }
@@ -603,7 +603,7 @@ build {
   sources = ["source.proxmox-iso.frontend-webserver82","source.proxmox-iso.backend-database82","source.proxmox-iso.load-balancer82","source.proxmox-iso.frontend-webserver83","source.proxmox-iso.backend-database83","source.proxmox-iso.load-balancer83","source.proxmox-iso.frontend-webserver84","source.proxmox-iso.backend-database84","source.proxmox-iso.load-balancer84"]
 
   #############################################################################
-  # Using the file provisioner to SCP this file to the instance 
+  # Using the file provisioner to SCP this file to the instance
   # Copies the needed SSH config file into the VM template so we can clone our
   # Application source code
   #############################################################################
@@ -614,7 +614,7 @@ build {
   }
 
   #############################################################################
-  # Using the file provisioner to SCP this file to the instance 
+  # Using the file provisioner to SCP this file to the instance
   # Copy the private key used to clone your source code -- make sure the public
   # key is in your GitHub account and you using a deploy key
   #############################################################################
@@ -625,7 +625,7 @@ build {
   }
 
   #############################################################################
-  # Using the file provisioner to SCP this file to the instance 
+  # Using the file provisioner to SCP this file to the instance
   # Add .hcl configuration file to register an instance with Consul for dynamic
   # DNS on the third interface
   #############################################################################
@@ -636,9 +636,9 @@ build {
   }
 
   #############################################################################
-  # Copy the node-exporter-consul-service.json file to the instance move this 
-  # file to /etc/consul.d/ directory so that each node can register as a 
-  # service dynamically -- which Prometheus can then 
+  # Copy the node-exporter-consul-service.json file to the instance move this
+  # file to /etc/consul.d/ directory so that each node can register as a
+  # service dynamically -- which Prometheus can then
   # scape and automatically find metrics to collect
   #############################################################################
 
@@ -648,7 +648,7 @@ build {
   }
 
   #############################################################################
-  # Copy the consul.conf file to the instance to update the consul DNS to look 
+  # Copy the consul.conf file to the instance to update the consul DNS to look
   # on the internal port of 8600 to resolve the .consul domain lookups
   #############################################################################
 
@@ -658,7 +658,7 @@ build {
   }
 
   #############################################################################
-  # Copy the node_exporter service file to the template so that the instance 
+  # Copy the node_exporter service file to the template so that the instance
   # can publish its own system metrics on the metrics interface
   #############################################################################
 
@@ -668,7 +668,7 @@ build {
   }
 
   #############################################################################
-  # This is the script that will open firewall ports needed for a node to 
+  # This is the script that will open firewall ports needed for a node to
   # function on the the School Cloud Platform and create the default firewalld
   # zones.
   #############################################################################
@@ -679,7 +679,7 @@ build {
   }
 
   #############################################################################
-  # These shell scripts are needed to create the cloud instances and register 
+  # These shell scripts are needed to create the cloud instances and register
   # the instance with Consul DNS --- Don't edit this
   #############################################################################
 
@@ -724,7 +724,7 @@ build {
 
   #############################################################################
   # Uncomment this block to add your own custom bash install scripts
-  # This block you can add your own shell scripts to customize the image you 
+  # This block you can add your own shell scripts to customize the image you
   # are creating
   #############################################################################
 
@@ -735,19 +735,21 @@ build {
 
   #############################################################################
   # Uncomment this block to add your own custom bash install scripts
-  # This block you can add your own shell scripts to customize the image you 
+  # This block you can add your own shell scripts to customize the image you
   # are creating
   #############################################################################
 
   provisioner "shell" {
     execute_command = "echo 'vagrant' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'"
     scripts = ["../scripts/proxmox/three-tier/frontend/post_install_prxmx_frontend-firewall-open-ports.sh",
-      "../scripts/proxmox/three-tier/frontend/post_install_prxmx_ubuntu_create_service_account_for_flask_app.sh",
       "../scripts/proxmox/three-tier/frontend/post_install_prxmx_generate_self_signed_certs.sh",
-      "../scripts/proxmox/three-tier/frontend/post_install_prxmx_ubuntu_install_flask_server_prereqs.sh",
+      "../scripts/proxmox/three-tier/frontend/post_install_prxmx_frontend-install_nodejs.sh",
+      "../scripts/proxmox/three-tier/frontend/post_install_prxmx_frontend-install_nextjs_service_dependencies.sh",
+      "../scripts/proxmox/three-tier/frontend/post_install_prxmx_ubuntu_create_service_account_for_flask_app.sh",
       "../scripts/proxmox/three-tier/frontend/post_install_prxmx_ubuntu_move_application_files_for_flask_app.sh",
+      "../scripts/proxmox/three-tier/frontend/post_install_prxmx_ubuntu_move_application_files_for_nextjs.sh",
       "../scripts/proxmox/three-tier/frontend/post_install_prxmx_ubuntu_update_env_values_from_vault.sh"]
-    environment_vars = ["DBUSER=${local.DBUSER}", "DBPASS=${local.DBPASS}", "DATABASE=${local.DATABASE}", "FQDN=${local.FQDN}"]
+    environment_vars = ["DBUSER=${local.DBUSER}", "DBPASS=${local.DBPASS}", "DATABASE=${local.DATABASE}", "FQDN=${local.FQDN}", "CLIENTID=${local.CLIENTID}", "CLIENTSECRET=${local.CLIENTSECRET}"]
     only             = ["proxmox-iso.frontend-webserver82","proxmox-iso.frontend-webserver83","proxmox-iso.frontend-webserver84"]
   }
 
