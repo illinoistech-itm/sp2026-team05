@@ -33,9 +33,9 @@ consul-service-tag-contact-email = "hjuliano@hawk.illinoistech.edu" # Used as pa
 frontend-template_to_clone = "team05-fe-template" # The name of the template to clone
 backend-template_to_clone  = "team05-be-template" # The name of the template to clone
 lb-template_to_clone       = "team05-lb-template" # The name of the template to clone
-fe-tags                    = "fe:team05" # Tags separated by commas: fe,team00
-lb-tags                    = "lb:team05" # Tags separated by commas: lb,team00
-be-tags                    = "be:team05" # Tags separated by commas: be,team00
+fe-tags                    = "fe:team05:hjj" # Tags separated by commas: fe,team00
+lb-tags                    = "lb:team05:hjj" # Tags separated by commas: lb,team00
+be-tags                    = "be:team05:hjj" # Tags separated by commas: be,team00
 ###############################################################################
 # Customize instance hardware settings
 ###############################################################################
