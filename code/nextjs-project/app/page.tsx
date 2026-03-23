@@ -1,4 +1,5 @@
 import Image from "next/image";
+import LoginButton from "./loginbutton";
 
 export default function Home() {
   return (
@@ -16,9 +17,7 @@ export default function Home() {
         <div className="w-[31vh]">
             <p className="relative text-white text-xs mb-1">Log in </p>
             <div className="flex bg-midnight border-white border-[1px] w-[31vh] h-[40vh] rounded-sm p-4 justify-center">
-                <button className="bg-photoblue tx-white text-sm underline rounded-sm h-9 px-9">
-                    Log in with Google
-                </button>
+                <LoginButton />
             </div>
         </div>
       </main>
