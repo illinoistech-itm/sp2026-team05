@@ -50,12 +50,13 @@ locals {
   DBPASS = vault("/secret/data/DB","DBPASS")
 }
 
+# this is for the client 
 locals {
-  CLIENTID = vault("/secret/data/DB","CLIENTID")
+  CLIENTID = vault("/secret/data/CL","CLIENTID")
 }
 
 locals {
-  CLIENTSECRET = vault("/secret/data/DB","CLIENTSECRET")
+  CLIENTSECRET = vault("/secret/data/CL","CLIENTSECRET")
 }
 
 # This variable is the IP address range to allow your connections
