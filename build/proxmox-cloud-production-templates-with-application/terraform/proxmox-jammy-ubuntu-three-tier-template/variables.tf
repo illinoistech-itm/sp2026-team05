@@ -47,9 +47,9 @@ variable "frontend-yourinitials" {}
 variable "backend-yourinitials" {}
 variable "lb-yourinitials" {}
 
-variable "fe-tags" {}
-variable "lb-tags" {}
-variable "be-tags" {}
+variable "FE-TAGS" {}
+variable "LB-TAGS" {}
+variable "BE-TAGS" {}
 
 variable "consul-service-tag-contact-email" {}
 
