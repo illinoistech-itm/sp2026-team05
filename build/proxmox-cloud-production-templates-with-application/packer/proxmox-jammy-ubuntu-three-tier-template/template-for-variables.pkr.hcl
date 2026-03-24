@@ -7,15 +7,15 @@
 # We are going to create a template on each of the three nodes of the cluster
 # That way we can randomly deploy VM instances on any node
 locals {
-  NODENAME1 = vault("/secret/data/NODENAME", "NODENAME1")
+  NODENAME1 = vault("/secret/data/NODENAME1", "NODENAME1")
 }
 
 locals {
-  NODENAME2 = vault("/secret/data/NODENAME", "NODENAME2")
+  NODENAME2 = vault("/secret/data/NODENAME2", "NODENAME2")
 }
 
 locals {
-  NODENAME3 = vault("/secret/data/NODENAME", "NODENAME3")
+  NODENAME3 = vault("/secret/data/NODENAME3", "NODENAME3")
 }
 
 # This is essentially the USERNAME
