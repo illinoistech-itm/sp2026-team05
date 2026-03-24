@@ -5,7 +5,7 @@ set -v
 # https://copilot.microsoft.com/shares/nis5fbJZkaup7K34PRKwK
 
 sudo mv /home/vagrant/sp2026-team05/code/python-flask/app.py /home/nextjsuser/app.py
-sudo mv /home/vagrant/sp2026-team05/code/python-flask/.env /home/nextjsuser/.env
+sudo mv /home/vagrant/sp2026-team05/code/nextjs-project/.env_template /home/nextjsuser/.env
 sudo mv /home/vagrant/sp2026-team05/code/python-flask/static/ /home/nextjsuser/static/
 sudo mv /home/vagrant/sp2026-team05/code/python-flask/templates/ /home/nextjsuser/templates/
 
