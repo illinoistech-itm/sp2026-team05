@@ -18,6 +18,6 @@ sudo openssl dhparam -out /etc/nginx/dhparam.pem 2048
 
 # Change ownership of generated keys so that the user: flaskapp can access them
 # creates repo
-sudo adduser --system --home /home/nextjsuser --group --shell /bin/bash nextjsuser
+#sudo adduser --system --home /home/nextjsuser --group --shell /bin/bash nextjsuser
 sudo chown nextjsuser:nextjsuser /home/nextjsuser/signed.key
 sudo chown nextjsuser:nextjsuser /home/nextjsuser/signed.crt
