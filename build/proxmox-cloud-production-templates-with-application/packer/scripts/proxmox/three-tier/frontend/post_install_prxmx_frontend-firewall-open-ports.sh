@@ -1,6 +1,5 @@
 #!/bin/bash
-
-#!/bin/bash
+set -e
 
 # Syntax to open a firewall port on the meta-network -- not the public
 # network interface as the frontend will only be listening on the 10.110.0.0/16 meta-network
