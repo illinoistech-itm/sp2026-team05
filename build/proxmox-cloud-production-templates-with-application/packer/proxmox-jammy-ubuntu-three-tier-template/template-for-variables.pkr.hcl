@@ -50,13 +50,17 @@ locals {
   DBPASS = vault("/secret/data/DB","DBPASS")
 }
 
-# this is for the client 
+# This will be the Google autherntication secret for the frontend application
 locals {
-  CLIENTID = try(vault("secret/data/myapp", "data.CLIENTID"), "mock_clientid")
+  AUTH_SECRET = vault("/secret/data/AUTH", "AUTH_SECRET")
 }
 
 locals {
-  CLIENTSECRET = try(vault("secret/data/myapp", "data.CLIENTSECRET"), "mock_clientsecret")
+  AUTH_GOOGLE_ID = vault("/secret/data/AUTH", "AUTH_GOOGLE_ID")
+}
+
+locals {
+  AUTH_GOOGLE_SECRET = vault("/secret/data/AUTH", "AUTH_GOOGLE_SECRET")
 }
 
 # This variable is the IP address range to allow your connections
