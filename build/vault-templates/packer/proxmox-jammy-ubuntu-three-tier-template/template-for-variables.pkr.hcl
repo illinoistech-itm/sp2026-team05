@@ -45,12 +45,17 @@ locals {
   DBUSER = vault("/secret/data/DB","DBUSER")
 }
 
+# This will be the Google autherntication secret for the frontend application
 locals {
-  CLIENTID = vault("/secret/data/CLIENT","CLIENTID")
+  AUTH_SECRET = vault("/secret/data/AUTH", "AUTH_SECRET")
 }
 
 locals {
-  CLIENTSECRET = vault("/secret/data/CLIENT","CLIENTSECRET")
+  AUTH_GOOGLE_ID = vault("/secret/data/AUTH", "AUTH_GOOGLE_ID")
+}
+
+locals {
+  AUTH_GOOGLE_SECRET = vault("/secret/data/AUTH", "AUTH_GOOGLE_SECRET")
 }
 
 # This will be the Database user (non-root) password setup
