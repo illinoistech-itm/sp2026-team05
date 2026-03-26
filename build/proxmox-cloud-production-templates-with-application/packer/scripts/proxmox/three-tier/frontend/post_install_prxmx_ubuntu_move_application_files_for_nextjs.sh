@@ -7,7 +7,7 @@ sudo mv /home/vagrant/sp2026-team05/code/nextjs-project /home/nextjsuser/
 cd /home/nextjsuser/nextjs-project/
 mv .env_template .env || true
 
-rsync -a --chown= nextjsuser:nextjsuser /home/nextjsuser/nextjs-project/ /home/nextjsuser/
+rsync -a --chown=nextjsuser:nextjsuser /home/nextjsuser/nextjs-project/ /home/nextjsuser/
 
 # Run NPM install to download all dependencies from the package.json
 # We don't want to be pushing node_module directory around!

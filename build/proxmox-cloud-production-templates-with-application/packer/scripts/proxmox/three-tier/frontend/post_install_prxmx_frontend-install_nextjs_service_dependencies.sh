@@ -9,5 +9,10 @@ cd /home/vagrant/sp2026-team05/code/nextjs-project/
 # restart them at boot
 pm2 start npm --name "nextjs-project" -- run start
 
+sudo chmod +x /usr/bin/node
+sudo chmod +x /usr/bin/npm
+which node
+ls -l /usr/bin/node
+
 sudo -u nextjsuser pm2 save
 sudo pm2 startup systemd -u nextjsuser --hp /home/nextjsuser
