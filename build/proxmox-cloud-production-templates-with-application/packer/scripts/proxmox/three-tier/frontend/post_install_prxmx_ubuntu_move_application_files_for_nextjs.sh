@@ -3,15 +3,16 @@ set -e
 set -x
 
 # Change directory to the location of your Next project code
-cd /home/vagrant/sp2026-team05/code/nextjs-project/
+sudo mv /home/vagrant/sp2026-team05/code/nextjs-project /home/nextjsuser/
+cd /home/nextjsuser/nextjs-project/
 mv .env_template .env || true
 
-sudo chown -R nextjsuser:nextjsuser /home/nextjsuser
+rsync -a --chown= nextjsuser:nextjsuser /home/nextjsuser/nextjs-project/ /home/nextjsuser/
 
 # Run NPM install to download all dependencies from the package.json
 # We don't want to be pushing node_module directory around!
 sudo -u nextjsuser  bash << EOF 
-cd /home/vagrant/sp2026-team05/code/nextjs-project/
+cd /home/nextjsuser/nextjs-project/
 npm install
 npm run build
 

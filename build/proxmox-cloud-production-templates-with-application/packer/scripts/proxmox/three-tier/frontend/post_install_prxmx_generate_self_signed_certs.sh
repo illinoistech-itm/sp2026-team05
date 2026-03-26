@@ -15,7 +15,7 @@ sudo openssl req -x509 -nodes -days 365 -newkey rsa:4096 -keyout /home/nextjsuse
 sudo apt update 
 sudo apt-get install -y nginx
 
-/sudo openssl dhparam -out /etc/nginx/dhparam.pem 2048
+sudo openssl dhparam -out /etc/nginx/dhparam.pem 2048
 
 # creates repo
 # sudo adduser --system --home /home/nextjsuser --group --shell /bin/bash nextjsuser
