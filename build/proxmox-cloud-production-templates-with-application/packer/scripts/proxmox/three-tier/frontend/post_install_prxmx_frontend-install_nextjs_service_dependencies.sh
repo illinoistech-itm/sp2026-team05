@@ -15,4 +15,4 @@ which node
 ls -l /usr/bin/node
 
 sudo -u nextjsuser pm2 save
-sudo pm2 startup systemd -u nextjsuser --hp /home/nextjsuser
+pm2 startup systemd -u nextjsuser --hp /home/nextjsuser
