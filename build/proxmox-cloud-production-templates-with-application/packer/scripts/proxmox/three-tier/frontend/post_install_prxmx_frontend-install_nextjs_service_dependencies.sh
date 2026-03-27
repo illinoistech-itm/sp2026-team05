@@ -12,6 +12,7 @@ pm2 start npm --name "nextjs-project" -- run start
 #ensures node and npm binaries are executable by the nextjsuser and pm2 process manager
 sudo chmod +x /usr/bin/node
 sudo chmod +x /usr/bin/npm
+ls -l /usr/bin/node /usr/bin/npm
 
 #saves pm2 process list 
 sudo -u nextjsuser pm2 save

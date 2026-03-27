@@ -24,7 +24,7 @@ backend-desc                     = "Team-5 terrafrom backend template"          
 lb-yourinitials                  = "team-5-lb-hjj"                     # initials to add to make unique systems
 lb-numberofvms                   = 1                      # quantity of that template to launch
 lb-desc                          = "Team-5 terraform lb template"                     # What is the purpose of the TF template
-lb-macaddr                       = "bc:24:11:00:00:1F"                     # Class assigned mac address for a public IP for your lb
+lb-macaddr                       = "bc:24:11:00:00:57"                     # Class assigned mac address for a public IP for your lb
 consul-service-tag-contact-email = "hjuliano@hawk.illinoistech.edu" # Used as part of the consul service definition as a tag that can be queried
 ###############################################################################
 # Name the template your created via Packer for Terraform to use to deploy
