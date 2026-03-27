@@ -14,7 +14,7 @@ sudo -E bash nodesource_setup.sh
 sudo apt-get install -y nodejs
 
 # Change directory to the location of your JS code
-#cd /home/vagrant/sp2026-team05/code/nextjs-project/
+cd /home/vagrant/sp2026-team05/code/nextjs-project/
 
 # https://github.com/motdotla/dotenv -- create a .env file to pass environment variables
 # dotenv mysql2 packages will be installed in the package.json file

@@ -23,4 +23,5 @@ sudo -u nextjsuser pm2 save
 
 # This creates your javascript application service file
 #sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u vagrant --hp /home/vagrant
-sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u nextjsuser --hp /home/nextjsuser
+#sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u nextjsuser --hp /home/nextjsuser
+sudo env PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u nextjsuser --hp /home/nextjsuser
