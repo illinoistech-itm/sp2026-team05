@@ -2,13 +2,13 @@
 set -e
 set -x
 
+#copying next js file to next js user and change ownership to nextjsuser
+rsync -a --chown=nextjsuser:nextjsuser /home/vagrant/sp2026-team05/code/nextjs-project /home/nextjsuser/
+sudo chown -R nextjsuser:nextjsuser /home/nextjsuser/nextjs-project
+
 # Change directory to the location of your Next project code
-sudo mv /home/vagrant/sp2026-team05/code/nextjs-project /home/nextjsuser/
 cd /home/nextjsuser/nextjs-project/
 mv .env_template .env || true
-
-rsync -a --chown=nextjsuser:nextjsuser /home/nextjsuser/nextjs-project/ /home/nextjsuser/
-sudo chown -R nextjsuser:nextjsuser /home/nextjsuser/nextjs-project
 
 # Run NPM install to download all dependencies from the package.json
 # We don't want to be pushing node_module directory around!
