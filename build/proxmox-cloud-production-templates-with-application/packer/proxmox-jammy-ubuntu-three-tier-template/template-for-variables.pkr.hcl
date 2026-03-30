@@ -92,7 +92,7 @@ variable "DISKSIZE" {
 
 variable "STORAGEPOOL" {
   type    = string
-  default = "templatedisk"
+  default = "datadisk1"
 }
 
 variable "NUMBEROFCORES" {
