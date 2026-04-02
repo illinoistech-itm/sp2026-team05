@@ -1,12 +1,12 @@
 /**Quick fix */
-/**import { authOptions } from "@/lib/auth";**/
-import NextAuth, { type NextAuthOptions } from "next-auth";
-import { NextRequest } from "next/server";
+/**Note we are using v5 structure**/
+import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import { auth } from "../../../../../auth";
 
-export const authOptions: NextAuthOptions = {
+const auth = NextAuth({
   providers: [
-    GoogleProvider({
+    Google({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
@@ -15,14 +15,15 @@ export const authOptions: NextAuthOptions = {
     async session({ session, token }) {
       if (session?.user && token?.sub) {
         (session.user as any).id = token.sub;
-        // Generate username from email if not set
-        if (!( session.user as any).username) {
-          (session.user as any).username = session.user.email?.split("@")[0] || "user";
+
+        if (!(session.user as any).username) {
+          (session.user as any).username =
+            session.user.email?.split("@")[0] || "user";
         }
       }
       return session;
     },
-    async jwt({ token, account, profile }) {
+    async jwt({ token, account }) {
       if (account) {
         token.accessToken = account.access_token;
       }
@@ -36,18 +37,6 @@ export const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
   },
-};
-/*** Delete this if code at bottom works
-const handler = NextAuth(authOptions);
-export { handler as GET, handler as POST };
-***/
+});
 
-const handle = NextAuth(authOptions);
-
-export async function GET(req: NextRequest, ctx: any) {
-  return handler(req, ctx);
-}
-
-export async function POST(req: NextRequest, ctx: any) {
-  return handler(req, ctx);
-}
+export const { GET, POST } = auth;
