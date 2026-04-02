@@ -1,6 +1,6 @@
 /**Quick fix */
 import NextAuth from "next-auth";
-import { authOptions } from "@/lib/auth";
+/**import { authOptions } from "@/lib/auth";**/
 import { NextRequest } from "next/server";
 /**import NextAuth, { type NextAuthOptions } from "next-auth";*/
 import GoogleProvider from "next-auth/providers/google";
@@ -42,6 +42,8 @@ export const authOptions: NextAuthOptions = {
 const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };
 ***/
+
+const handle = NextAuth(authOptions);
 
 export async function GET(req: NextRequest, ctx: any) {
   return handler(req, ctx);
