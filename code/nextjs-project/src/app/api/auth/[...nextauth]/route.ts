@@ -1,10 +1,10 @@
 /**Quick fix */
 /**Note we are using v5 structure**/
-import NextAuth from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
-/**import { auth } from "../../../../../auth";**/
+import NextAuth from "next-auth"
+import Google from "next-auth/providers/google"
+//**import { auth } from "../../../../../auth";**/
 
-const auth = NextAuth({
+export const { handlers } = NextAuth({
   providers: [
     Google({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -39,4 +39,5 @@ const auth = NextAuth({
   },
 });
 
-export const { GET, POST } = auth;
+// ✅ Export GET/POST for Next.js App Router API route
+export const { GET, POST } = handlers;
