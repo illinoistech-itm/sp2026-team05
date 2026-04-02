@@ -2,8 +2,7 @@
 import NextAuth from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { NextRequest } from "next/server";
-/** */
-import NextAuth, { type NextAuthOptions } from "next-auth";
+/**import NextAuth, { type NextAuthOptions } from "next-auth";*/
 import GoogleProvider from "next-auth/providers/google";
 
 export const authOptions: NextAuthOptions = {
