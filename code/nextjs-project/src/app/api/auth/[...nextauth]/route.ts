@@ -2,7 +2,7 @@
 /**Note we are using v5 structure**/
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { auth } from "../../../../../auth";
+/**import { auth } from "../../../../../auth";**/
 
 const auth = NextAuth({
   providers: [
