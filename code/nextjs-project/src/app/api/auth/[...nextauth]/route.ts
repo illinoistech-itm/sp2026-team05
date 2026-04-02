@@ -1,3 +1,8 @@
+/**Quick fix */
+import NextAuth from "next-auth";
+import { authOptions } from "@/lib/auth";
+import { NextRequest } from "next/server";
+/** */
 import NextAuth, { type NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
@@ -34,6 +39,15 @@ export const authOptions: NextAuthOptions = {
     strategy: "jwt",
   },
 };
-
+/*** Delete this if code at bottom works
 const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };
+***/
+
+export async function GET(req: NextRequest, ctx: any) {
+  return handler(req, ctx);
+}
+
+export async function POST(req: NextRequest, ctx: any) {
+  return handler(req, ctx);
+}
