@@ -40,20 +40,19 @@ server {
                 # First attempt to serve request as file, then
                 # as directory, then fall back to displaying a 404.
                 #try_files $uri $uri/ =404;
-                try_files $uri $uri/ =404;
 
                         # Added by JRH
-                        proxy_pass http://backend;
+                        proxy_pass http://backend/;
                         proxy_set_header Host $host;
                         proxy_set_header X-Real-IP $remote_addr;
                         proxy_ssl_server_name on;
         }		
         
         # https://serverfault.com/questions/932628/how-to-handle-relative-urls-correctly-with-a-nginx-reverse-proxy
-        location /static/ {
-             proxy_pass http://backend/static/;
-        }
-        location /welcome/ {
-             proxy_pass http://backend/welcome/;
-        }
+        #location /static/ {
+        #     proxy_pass http://backend/static/;
+        #}
+        #location /welcome/ {
+        #    proxy_pass http://backend/welcome/;
+        #}
 }
