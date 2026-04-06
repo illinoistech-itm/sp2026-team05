@@ -73,3 +73,8 @@ This update documents the successful integration of automated deployment scripts
 * **Infrastructure:** Terraform
 * **Authentication:** Google OAuth / Next-Auth
 ---
+
+## Issue Require Fixes
+![Errors](./images/errors.png "image output showing errors that require fixing")
+
+---
