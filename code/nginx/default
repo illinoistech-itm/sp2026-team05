@@ -56,3 +56,10 @@ server {
         #    proxy_pass http://backend/welcome/;
         #}
 }
+server {
+    listen 80;
+    server_name system22h119.itm.iit.edu;
+
+    return 301 https://$host$request_uri;
+}
+
