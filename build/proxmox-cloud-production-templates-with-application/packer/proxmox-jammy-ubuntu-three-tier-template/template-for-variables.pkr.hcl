@@ -50,19 +50,6 @@ locals {
   DBPASS = vault("/secret/data/DB","DBPASS")
 }
 
-# This will be the Google autherntication secret for the frontend application
-locals {
-  AUTH_SECRET = vault("/secret/data/AUTH", "AUTH_SECRET")
-}
-
-locals {
-  AUTH_GOOGLE_ID = vault("/secret/data/AUTH", "AUTH_GOOGLE_ID")
-}
-
-locals {
-  AUTH_GOOGLE_SECRET = vault("/secret/data/AUTH", "AUTH_GOOGLE_SECRET")
-}
-
 # This variable is the IP address range to allow your connections
 # The SQL wildcard is the %
 # 10.110.%.%  could also be a FQDN 
@@ -78,6 +65,41 @@ locals {
 # This will be the Database name you default to (like posts or comments or customers)
 locals {
   DATABASE = vault("/secret/data/DB","DATABASENAME") 
+}
+
+# This will be the Google autherntication secret for the frontend application
+locals {
+  AUTH_SECRET = vault("/secret/data/AUTH", "AUTH_SECRET")
+}
+
+locals {
+  AUTH_GOOGLE_ID = vault("/secret/data/AUTH", "AUTH_GOOGLE_ID")
+}
+
+locals {
+  AUTH_GOOGLE_SECRET = vault("/secret/data/AUTH", "AUTH_GOOGLE_SECRET")
+}
+
+### This will be the Client ID and Secret for the application to use to authenticate to Vault
+locals {
+  CLIENTSECRET = vault("/secret/data/CLIENT", "CLIENTSECRET")
+}
+locals {
+  CLIENTID = vault("/secret/data/CLIENT", "CLIENTID")
+}
+
+### NEXTAUTH 
+locals {
+  AUTH_TRUST_HOST = vault("/secret/data/NEXTAUTH", "AUTH_TRUST_HOST")
+}
+locals {
+  AUTH_URL = vault("/secret/data/NEXTAUTH", "AUTH_URL")
+}
+locals {
+  NEXTAUTH_SECRET = vault("/secret/data/NEXTAUTH", "NEXTAUTH_SECRET")
+}
+locals {
+  NEXTAUTH_URL = vault("/secret/data/NEXTAUTH", "NEXTAUTH_URL")
 }
 
 variable "MEMORY" {
