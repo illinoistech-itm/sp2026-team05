@@ -55,6 +55,8 @@ autoinstall:
     authorized-keys:
       - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGTi1ciil8RrWQj1Vez1CLkaB4unBLUar/wPTg3wnI3Q palad@framework"
       - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGPIBuP9IdhODQcgOvjQTKNMpqbYAdNxcob/AmXc/EiW hjuliano@buildserver"
+      - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHgaRakbHrNyPr/5ioBiRCSXaSmlLNkfxDck7ZYOl6mo jliang24@buildserver"
+      - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICnB64XeCFLtZvjXvGzF+93J12vOWl0+SMrfKfY6UoHF hdo2@buildserver"
   late-commands:
     - "echo 'Defaults:vagrant !requiretty' > /target/etc/sudoers.d/vagrant"
     - "echo 'vagrant ALL=(ALL) NOPASSWD: ALL' >> /target/etc/sudoers.d/vagrant"
