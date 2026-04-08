@@ -1,25 +1,21 @@
 "use client";
 
+import "./TagPill.css";
+
 interface TagPillProps {
   tag: string;
   onRemove?: () => void;
   onClick?: () => void;
-  variant?: "default" | "removable" | "clickable";
 }
 
-export default function TagPill({ tag, onRemove, onClick, variant = "default" }: TagPillProps) {
+export default function TagPill({ tag, onRemove, onClick }: TagPillProps) {
   return (
-    <span
-      className="tag-pill"
-      onClick={onClick}
-      style={{ cursor: onClick ? "pointer" : "default" }}
-    >
+    <span className={`tag-pill ${onClick ? "clickable" : ""}`} onClick={onClick}>
       #{tag}
       {onRemove && (
         <button
+          className="tag-pill-remove"
           onClick={(e) => { e.stopPropagation(); onRemove(); }}
-          className="ml-1 hover:opacity-70 transition-opacity font-bold"
-          style={{ background: "none", border: "none", cursor: "pointer", color: "inherit" }}
         >
           ✕
         </button>

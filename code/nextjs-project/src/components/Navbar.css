@@ -1,0 +1,30 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: #b2dfdb;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.navbar-post-btn {
+  padding: 8px 24px;
+  border-radius: 12px;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  font-size: 0.875rem;
+  background: #00BFB3;
+  color: #0a2a28;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.navbar-post-btn:hover { background: #00D4C8; transform: scale(1.02); }

@@ -1,155 +1,28 @@
 @import "tailwindcss";
 
-@theme {
-  --color-teal-primary: #00BFB3;
-  --color-teal-light: #00D4C8;
-  --color-teal-dark: #008A82;
-  --color-teal-bg: #006B65;
-  --color-dark-card: #1A1A2E;
-  --color-dark-bg: #0D0D1A;
-  --color-dark-surface: #16213E;
-  --color-cream: #F5F0E8;
-
-  --font-mono: "Courier New", Courier, monospace;
-
-  --animate-fade-in: fadeIn 0.3s ease-in-out;
-  --animate-slide-up: slideUp 0.3s ease-out;
-  --animate-slide-in: slideIn 0.3s ease-out;
-}
-
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
-
 @keyframes slideUp {
   from { transform: translateY(20px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
 }
-
 @keyframes slideIn {
   from { transform: translateX(-20px); opacity: 0; }
   to { transform: translateX(0); opacity: 1; }
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 html, body {
   height: 100%;
   font-family: "Courier New", Courier, monospace;
 }
 
-body {
-  background: linear-gradient(135deg, #00BFB3 0%, #007A75 40%, #003D3A 100%);
-  min-height: 100vh;
-}
-
-/* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #00BFB3; border-radius: 3px; }
-
-/* Reusable component classes */
-.tag-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 4px 12px;
-  border-radius: 9999px;
-  font-size: 0.75rem;
-  font-family: "Courier New", Courier, monospace;
-  font-weight: 700;
-  background: #00BFB3;
-  color: #0a2a28;
-}
-
-.btn-primary {
-  padding: 8px 24px;
-  border-radius: 9999px;
-  font-family: "Courier New", Courier, monospace;
-  font-weight: 700;
-  background: #00BFB3;
-  color: #0a2a28;
-  transition: all 0.2s;
-  border: none;
-  cursor: pointer;
-}
-.btn-primary:hover {
-  background: #00D4C8;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 15px rgba(0, 191, 179, 0.4);
-}
-
-.input-field {
-  width: 100%;
-  padding: 12px 16px;
-  border-radius: 12px;
-  font-family: "Courier New", Courier, monospace;
-  font-size: 0.875rem;
-  outline: none;
-  transition: all 0.2s;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(0, 191, 179, 0.3);
-  color: white;
-}
-.input-field::placeholder { color: rgba(255, 255, 255, 0.4); }
-.input-field:focus {
-  border-color: #00BFB3;
-  box-shadow: 0 0 0 2px rgba(0, 191, 179, 0.15);
-}
-
-.overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 50;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(4px);
-}
-
-.post-card {
-  border-radius: 16px;
-  overflow: hidden;
-  transition: all 0.2s;
-  background: white;
-  border: 2px solid rgba(255, 255, 255, 0.9);
-}
-.post-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-}
-
-.dark-card {
-  background: linear-gradient(180deg, #1a1a2e 0%, #0d1b2a 100%);
-  border: 1px solid rgba(0, 191, 179, 0.2);
-}
-
-.glass {
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(0, 191, 179, 0.3);
-}
-
-.avatar-ring {
-  border: 2px solid #00BFB3;
-}
-
-.online-dot {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 12px;
-  height: 12px;
-  border-radius: 9999px;
-  border: 2px solid white;
-  background: #22c55e;
-}
 
 .animate-fade-in { animation: fadeIn 0.3s ease-in-out; }
 .animate-slide-up { animation: slideUp 0.3s ease-out; }
