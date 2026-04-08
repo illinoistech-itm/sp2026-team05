@@ -47,15 +47,16 @@ export default function LoginPage() {
               </svg>
               Continue with Google
             </button>
-
-            {/* Divider */}
+          
+          {/*
+        
             <div className="login-divider">
               <div className="login-divider-line" />
               <span className="login-divider-text">or</span>
               <div className="login-divider-line" />
             </div>
 
-            {/* Email */}
+    
             <div className="login-field">
               <label className="login-field-label">Email</label>
               <input
@@ -67,7 +68,6 @@ export default function LoginPage() {
               />
             </div>
 
-            {/* Password */}
             <div className="login-field">
               <label className="login-field-label">Password</label>
               <input
@@ -88,7 +88,8 @@ export default function LoginPage() {
 
             <button className="login-signup-btn" onClick={() => router.push("/signup")}>
               Sign up
-            </button>
+            </button> 
+            */}
           </div>
         </div>
       </main>
