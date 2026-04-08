@@ -2,7 +2,7 @@
 # These are your proxmox API token credentials (not username and password)
 # That will be provided to you
 ###############################################################################
-keypath = "id_ed25519_github_key" # The name to the private key you need to communicate with your instances
+keypath = "id_ed25519_server_key" # The name to the private key you need to communicate with your instances
 ###############################################################################
 # Debugging information settings
 # No need to change these values
@@ -15,13 +15,13 @@ pm_log_file   = "terraform-plugin-proxmox.log" # (Optional; defaults to terrafor
 # This is a variable to append to your cloud instances so they have a unique
 # FQDN -- this is needed for the gossip based DNS to work
 ###############################################################################
-frontend-yourinitials            = "team-05-frontend-hjj"                     # initials to add to make unique systems
+frontend-yourinitials            = "team05-fe"                     # initials to add to make unique systems
 frontend-numberofvms             = 3                      # quantity of that template to launch
 frontend-desc                    = "Team-05 terraform frontend template"                     # What is the purpose of the TF template
-backend-yourinitials             = "team-05-backend-hjj"                     # initials to add to make unique systems
+backend-yourinitials             = "team05-be"                     # initials to add to make unique systems
 backend-numberofvms              = 1                      # quantity of that template to launch
 backend-desc                     = "Team-05 terrafrom backend template"                     # What is the purpose of the TF template
-lb-yourinitials                  = "team-05-lb-hjj"                     # initials to add to make unique systems
+lb-yourinitials                  = "team05-lb"                     # initials to add to make unique systems
 lb-numberofvms                   = 1                      # quantity of that template to launch
 lb-desc                          = "Team-05 terraform lb template"                     # What is the purpose of the TF template
 lb-macaddr                       = "bc:24:11:00:00:57"                     # Class assigned mac address for a public IP for your lb

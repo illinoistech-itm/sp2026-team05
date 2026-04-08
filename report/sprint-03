@@ -35,3 +35,46 @@
     - Need to fix the CSS, currently the HTML is viewable
 
 ---
+
+# Completion of Sprint-02 & Start of Sprint-03: Infrastructure & Authentication Rollout
+
+This update documents the successful integration of automated deployment scripts, environment security, and infrastructure-as-code configurations managed primarily by **Hailie Jade Juliano** between March 25 and March 30, 2026.
+
+## Key Accomplishments
+
+### 1. Authentication & Environment Configuration
+* **Google OAuth Integration:** Added Google Authentication to the Vault and installed `next-auth` dependencies.
+* **Environment Security:** Edited the three-tier template to include Google token environment variables and updated environment scripts to secure the authentication path.
+
+### 2. Deployment Script Optimization
+* **User Permission Management:** Refactored Next.js scripts to enforce single-user creation and restricted application execution specifically to the `nextjsuser` account.
+* **Process Management:** Corrected script environmental paths to ensure continuous execution via `pm2`.
+* **Script Cleanup:** Removed random/self-signed certificate scripts, fixed duplicate copies of the `nextjs-project`, and eliminated syntax errors in the application movement scripts.
+
+### 3. Infrastructure as Code (Terraform)
+* **Resource Tuning:** Updated the Terraform configurations, applying direct changes to the MAC address and physical data disk parameters.
+
+---
+
+## 📊 Summary of Changes
+
+| Domain | Completed Task |
+| :--- | :--- |
+| **Identity & Access** | Google OAuth setup and `next-auth` package integration. |
+| **Automation** | Application migration script fixes and `pm2` process execution. |
+| **System Security** | Ownership lockdown to `nextjsuser` and removal of self-signed certs. |
+| **Infrastructure** | Terraform adjustments for data disks and network MAC addresses. |
+
+---
+
+## Tech Stack Involved
+* **Framework:** Next.js
+* **Process Manager:** PM2
+* **Infrastructure:** Terraform
+* **Authentication:** Google OAuth / Next-Auth
+---
+
+## Issue Require Fixes
+![Errors](./images/errors.png "image output showing errors that require fixing")
+
+---
