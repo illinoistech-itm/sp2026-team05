@@ -56,7 +56,7 @@ variable "BIND_ADDRESS" {
 # REPLACE XX with your number
 variable "TAGS" {
   type    = string
-  default = "team05;vault;hjj"
+  default = "team05;vault"
 }
 
 # This is the name of the Virtual Machine Template you want to create
