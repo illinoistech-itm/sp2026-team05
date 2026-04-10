@@ -6,7 +6,7 @@
 # This is the name of the node in the Cloud Cluster where to deploy the virtual instances
 variable "NODENAME" {
   type    = string
-  default = ""
+  default = "system22h082"
 }
 
 variable "TOKEN_ID" {
@@ -24,7 +24,7 @@ variable "TOKEN_VALUE" {
 variable "URL" {
   type = string
   # https://x.x.x.x:8006/api2/json
-  default   = ""
+  default   = "https://system22h082.itm.iit.edu:8006/api2/json"
   sensitive = true
 }
 
@@ -45,7 +45,7 @@ variable "STORAGEPOOL" {
 
 variable "NUMBEROFCORES" {
   type    = string
-  default = "1"
+  default = "2"
 }
 
 variable "BIND_ADDRESS" {
@@ -56,14 +56,14 @@ variable "BIND_ADDRESS" {
 # REPLACE XX with your number
 variable "TAGS" {
   type    = string
-  default = "teamXX;vault"
+  default = "team05;vault;hjj"
 }
 
 # This is the name of the Virtual Machine Template you want to create
 # REPLACE XX with your number
 variable "VMNAME" {
   type    = string
-  default = "teamXX-vault-server"
+  default = "team05-vault-server"
 }
 
 variable "SSHPW" {
