@@ -1,7 +1,7 @@
 /**Quick fix */
 /**Note we are using v5 structure**/
-import NextAuth from "next-auth"
-import Google from "next-auth/providers/google"
+import NextAuth from "next-auth";
+import Google from "next-auth/providers/google";
 //**import { auth } from "../../../../../auth";**/
 
 export const { handlers } = NextAuth({
@@ -39,5 +39,4 @@ export const { handlers } = NextAuth({
   },
 });
 
-// ✅ Export GET/POST for Next.js App Router API route
 export const { GET, POST } = handlers;
