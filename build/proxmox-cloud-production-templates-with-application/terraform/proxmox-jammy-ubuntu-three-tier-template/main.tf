@@ -38,30 +38,25 @@ data "vault_generic_secret" "target_node" {
   path = "secret/NODENAME"
 }
 
-data "vault_generic_secret" "target_node" {
+data "vault_generic_secret" "auth" {
   path = "secret/AUTH"
 }
 
-data "vault_generic_secret" "target_node" {
+data "vault_generic_secret" "client" {
   path = "secret/CLIENT"
 }
 
-data "vault_generic_secret" "target_node" {
+data "vault_generic_secret" "db" {
   path = "secret/DB"
 }
 
-data "vault_generic_secret" "target_node" {
+data "vault_generic_secret" "google" {
   path = "secret/GOOGLE"
 }
 
-data "vault_generic_secret" "target_node" {
+data "vault_generic_secret" "nextauth" {
   path = "secret/NEXTAUTH"
 }
-
-data "vault_generic_secret" "target_node" {
-  path = "secret/NEXTAUTH"
-}
-
 
 ##############################################################################
 
