@@ -1,15 +1,14 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 
-const productionAuthUrl = "https://system22h119.itm.iit.edu";
+const configuredBaseUrl =
+  process.env.AUTH_URL ||
+  process.env.NEXTAUTH_URL ||
+  (process.env.FQDN ? `https://${process.env.FQDN}` : undefined);
 
-if (
-  process.env.NODE_ENV === "production" &&
-  !process.env.AUTH_URL &&
-  !process.env.NEXTAUTH_URL
-) {
-  process.env.AUTH_URL = productionAuthUrl;
-  process.env.NEXTAUTH_URL = productionAuthUrl;
+if (configuredBaseUrl) {
+  process.env.AUTH_URL ??= configuredBaseUrl;
+  process.env.NEXTAUTH_URL ??= configuredBaseUrl;
 }
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
