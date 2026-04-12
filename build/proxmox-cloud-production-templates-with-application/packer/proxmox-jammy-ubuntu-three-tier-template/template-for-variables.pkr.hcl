@@ -67,25 +67,12 @@ locals {
   DATABASE = vault("/secret/data/DB","DATABASENAME") 
 }
 
-# This will be the Google autherntication secret for the frontend application
 locals {
-  AUTH_SECRET = vault("/secret/data/AUTH", "AUTH_SECRET")
+  GOOGLE_CLIENT_ID = vault("/secret/data/GOOGLE", "GOOGLE_CLIENT_ID")
 }
 
 locals {
-  AUTH_GOOGLE_ID = vault("/secret/data/AUTH", "AUTH_GOOGLE_ID")
-}
-
-locals {
-  AUTH_GOOGLE_SECRET = vault("/secret/data/AUTH", "AUTH_GOOGLE_SECRET")
-}
-
-### This will be the Client ID and Secret for the application to use to authenticate to Vault
-locals {
-  CLIENTSECRET = vault("/secret/data/CLIENT", "CLIENTSECRET")
-}
-locals {
-  CLIENTID = vault("/secret/data/CLIENT", "CLIENTID")
+  GOOGLE_CLIENT_SECRET = vault("/secret/data/GOOGLE", "GOOGLE_CLIENT_SECRET")
 }
 
 ### NEXTAUTH 
