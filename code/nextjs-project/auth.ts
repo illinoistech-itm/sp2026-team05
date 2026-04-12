@@ -1,6 +1,17 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 
+const productionAuthUrl = "https://system22h119.itm.iit.edu";
+
+if (
+  process.env.NODE_ENV === "production" &&
+  !process.env.AUTH_URL &&
+  !process.env.NEXTAUTH_URL
+) {
+  process.env.AUTH_URL = productionAuthUrl;
+  process.env.NEXTAUTH_URL = productionAuthUrl;
+}
+
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
     Google({
