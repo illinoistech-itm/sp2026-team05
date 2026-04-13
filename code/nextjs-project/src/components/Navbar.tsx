@@ -6,6 +6,7 @@ import Logo from "./Logo";
 import Avatar from "./Avatar";
 import UploadModal from "./UploadModal";
 import { currentUser } from "@/lib/mockData";
+import "./Navbar.css";
 
 interface NavbarProps {
   showPost?: boolean;
@@ -18,19 +19,11 @@ export default function Navbar({ showPost = true, showAvatar = true }: NavbarPro
 
   return (
     <>
-      <nav
-        className="flex items-center justify-between px-6 py-3 sticky top-0 z-40"
-        style={{ background: "#b2dfdb", borderBottom: "none" }}
-      >
+      <nav className="navbar">
         <Logo size={55} href="/home" />
-
-        <div className="flex items-center gap-4">
+        <div className="navbar-actions">
           {showPost && (
-            <button
-              onClick={() => setShowUpload(true)}
-              className="px-6 py-2 rounded-xl font-mono font-bold text-sm transition-all hover:scale-105"
-              style={{ background: "#00BFB3", color: "#0a2a28" }}
-            >
+            <button className="navbar-post-btn" onClick={() => setShowUpload(true)}>
               Post
             </button>
           )}
@@ -45,14 +38,8 @@ export default function Navbar({ showPost = true, showAvatar = true }: NavbarPro
           )}
         </div>
       </nav>
-
       {showUpload && (
-        <UploadModal
-          onClose={() => setShowUpload(false)}
-          onSuccess={(post) => {
-            console.log("New post created:", post);
-          }}
-        />
+        <UploadModal onClose={() => setShowUpload(false)} onSuccess={(p) => console.log("posted", p)} />
       )}
     </>
   );

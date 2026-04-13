@@ -1,0 +1,270 @@
+.profile-page {
+  min-height: 100vh;
+  background: linear-gradient(160deg, #00BFB3 0%, #007A75 40%, #003D3A 100%);
+}
+
+.profile-content {
+  padding: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.profile-card {
+  background: #0d1117;
+  border: 1px solid rgba(0, 191, 179, 0.2);
+  border-radius: 16px;
+  padding: 24px;
+  position: relative;
+  animation: slideUp 0.3s ease-out;
+}
+
+.profile-settings-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s, transform 0.3s;
+  display: flex;
+  align-items: center;
+}
+.profile-settings-btn:hover {
+  color: white;
+  transform: rotate(45deg);
+}
+
+.profile-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.profile-info { flex: 1; }
+
+.profile-username {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.5rem;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.profile-bio {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.profile-stats {
+  display: flex;
+  gap: 24px;
+}
+
+.profile-stat-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s;
+  padding: 0;
+}
+.profile-stat-btn:hover { transform: scale(1.05); }
+
+.profile-stat-label {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.875rem;
+  color: white;
+}
+
+.profile-post-btn {
+  padding: 8px 32px;
+  border-radius: 8px;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  font-size: 0.875rem;
+  background: #00BFB3;
+  color: #0a2a28;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 32px;
+  transition: transform 0.2s, background 0.2s;
+}
+.profile-post-btn:hover { background: #00D4C8; transform: scale(1.02); }
+
+.profile-tabs {
+  display: flex;
+  gap: 32px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 24px;
+}
+
+.profile-tab {
+  padding-bottom: 12px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.875rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+.profile-tab.active {
+  color: #00BFB3;
+  border-bottom-color: #00BFB3;
+}
+.profile-tab:not(.active) { color: rgba(255, 255, 255, 0.5); }
+
+.profile-photos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 600px) {
+  .profile-photos-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.profile-photo-thumb {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 1;
+  cursor: pointer;
+}
+.profile-photo-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+.profile-photo-thumb:hover img { transform: scale(1.1); }
+
+.profile-photo-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 8px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.profile-photo-thumb:hover .profile-photo-overlay { opacity: 1; }
+
+.profile-photo-caption {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.75rem;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profile-empty {
+  font-family: "Courier New", Courier, monospace;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.875rem;
+}
+
+/* Follow Modal */
+.follow-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+}
+
+.follow-modal {
+  width: 100%;
+  max-width: 320px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #00BFB3, #007A75);
+  animation: slideUp 0.3s ease-out;
+}
+
+.follow-modal-title {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  padding: 24px 16px 16px;
+}
+
+.follow-modal-list {
+  padding: 0 16px 16px;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.follow-modal-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+.follow-modal-item:hover { background: rgba(255, 255, 255, 0.1); }
+.follow-modal-item:last-child { border-bottom: none; }
+
+.follow-modal-avatar-wrap { position: relative; }
+
+.follow-modal-username {
+  flex: 1;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.875rem;
+  color: white;
+  font-weight: bold;
+}
+
+.follow-modal-msg-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.2s;
+  display: flex;
+}
+.follow-modal-msg-btn:hover { color: white; }
+
+.follow-modal-footer {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 16px;
+}
+.follow-modal-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.25rem;
+  transition: color 0.2s;
+}
+.follow-modal-close:hover { color: white; }
+
+.online-dot {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 9999px;
+  border: 2px solid white;
+  background: #22c55e;
+}

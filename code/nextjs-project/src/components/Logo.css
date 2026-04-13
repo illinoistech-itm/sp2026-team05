@@ -1,0 +1,12 @@
+.logo-wrap {
+  display: inline-block;
+  cursor: pointer;
+  transition: transform 0.2s;
+  background: transparent;
+}
+.logo-wrap:hover { transform: scale(1.05); }
+
+.logo-wrap img {
+  display: block;
+  background: transparent;
+}

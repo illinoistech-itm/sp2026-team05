@@ -1,12 +1,21 @@
 import { Suspense } from "react";
 import MessagesClient from "./MessagesClient";
 
-export default function MessagesPage() {
+type MessagesPageProps = {
+  searchParams?: Promise<{
+    user?: string | string[];
+  }>;
+};
+
+export default async function MessagesPage({ searchParams }: MessagesPageProps) {
+  const resolvedSearchParams = await searchParams;
+  const initialUserId = Array.isArray(resolvedSearchParams?.user)
+    ? resolvedSearchParams.user[0]
+    : resolvedSearchParams?.user;
+
   return (
-    <div className="min-h-screen">
-      <Suspense fallback={<div>Loading messages...</div>}>
-        <MessagesClient />
-      </Suspense>
-    </div>
+    <Suspense fallback={<div className="messages-page">Loading messages...</div>}>
+      <MessagesClient initialUserId={initialUserId} />
+    </Suspense>
   );
 }

@@ -45,19 +45,6 @@ locals {
   DBUSER = vault("/secret/data/DB","DBUSER")
 }
 
-# This will be the Google autherntication secret for the frontend application
-locals {
-  AUTH_SECRET = vault("/secret/data/AUTH", "AUTH_SECRET")
-}
-
-locals {
-  AUTH_GOOGLE_ID = vault("/secret/data/AUTH", "AUTH_GOOGLE_ID")
-}
-
-locals {
-  AUTH_GOOGLE_SECRET = vault("/secret/data/AUTH", "AUTH_GOOGLE_SECRET")
-}
-
 # This will be the Database user (non-root) password setup
 locals {
   DBPASS = vault("/secret/data/DB","DBPASS")
@@ -78,6 +65,30 @@ locals {
 # This will be the Database name you default to (like posts or comments or customers)
 locals {
   DATABASE = vault("/secret/data/DB","DATABASENAME")
+}
+
+locals {
+  GOOGLE_CLIENT_ID = vault("/secret/data/GOOGLE", "GOOGLE_CLIENT_ID")
+}
+
+locals {
+  GOOGLE_CLIENT_SECRET = vault("/secret/data/GOOGLE", "GOOGLE_CLIENT_SECRET")
+}
+
+locals {
+  AUTH_TRUST_HOST = vault("/secret/data/NEXTAUTH", "AUTH_TRUST_HOST")
+}
+
+locals {
+  AUTH_URL = vault("/secret/data/NEXTAUTH", "AUTH_URL")
+}
+
+locals {
+  NEXTAUTH_SECRET = vault("/secret/data/NEXTAUTH", "NEXTAUTH_SECRET")
+}
+
+locals {
+  NEXTAUTH_URL = vault("/secret/data/NEXTAUTH", "NEXTAUTH_URL")
 }
 
 variable "MEMORY" {

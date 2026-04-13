@@ -6,9 +6,10 @@ import Navbar from "@/components/Navbar";
 import PostCard from "@/components/PostCard";
 import { mockPosts } from "@/lib/mockData";
 import { filterPostsByTag } from "@/lib/hashtags";
+import "./home.css";
 
 export default function HomePage() {
-  const [posts, setPosts] = useState(mockPosts);
+  const [posts] = useState(mockPosts);
   const [searchTag, setSearchTag] = useState("");
   const [activeFilter, setActiveFilter] = useState("");
 
@@ -26,53 +27,45 @@ export default function HomePage() {
     setActiveFilter(searchTag.trim());
   };
 
+  const clearFilter = () => {
+    setActiveFilter("");
+    setSearchTag("");
+  };
+
   return (
-    <div
-      className="min-h-screen"
-      style={{ background: "linear-gradient(160deg, #aee8e5 0%, #00BFB3 20%, #008080 60%, #004D4D 100%)" }}
-    >
+    <div className="home-page">
       <Navbar showPost showAvatar />
 
-      {/* Search bar */}
-      <div className="px-6 py-4">
-        <form onSubmit={handleSearch} className="flex items-center gap-2 max-w-md mx-auto">
-          <div className="flex-1 relative">
-            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-white/50" />
+      <div className="home-search-wrapper">
+        <form className="home-search-form" onSubmit={handleSearch}>
+          <div className="home-search-input-wrap">
+            <Search size={16} className="home-search-icon" />
             <input
               type="text"
               value={searchTag}
               onChange={(e) => setSearchTag(e.target.value)}
               placeholder="Search by tag..."
-              className="w-full pl-9 pr-4 py-2 rounded-full font-mono text-sm text-white outline-none"
-              style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(255,255,255,0.3)" }}
+              className="home-search-input"
             />
           </div>
           {activeFilter && (
-            <button
-              type="button"
-              onClick={() => { setActiveFilter(""); setSearchTag(""); }}
-              className="flex items-center gap-1 px-3 py-2 rounded-full font-mono text-xs font-bold transition-all hover:scale-105"
-              style={{ background: "rgba(0,0,0,0.3)", color: "white" }}
-            >
+            <button type="button" onClick={clearFilter} className="home-clear-btn">
               <X size={12} /> Clear
             </button>
           )}
         </form>
         {activeFilter && (
-          <p className="text-center font-mono text-sm text-white/70 mt-2">
-            Showing posts tagged <span className="text-white font-bold">#{activeFilter}</span>
+          <p className="home-filter-label">
+            Showing posts tagged <strong>#{activeFilter}</strong>
           </p>
         )}
       </div>
 
-      {/* Posts Grid */}
-      <main className="px-6 pb-10">
+      <main className="home-grid-wrapper">
         {filteredPosts.length === 0 ? (
-          <div className="text-center py-20">
-            <p className="font-mono text-white/60 text-lg">No posts found for #{activeFilter}</p>
-          </div>
+          <div className="home-empty">No posts found for #{activeFilter}</div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div className="home-grid">
             {filteredPosts.map((post) => (
               <PostCard key={post.id} post={post} onTagClick={handleTagClick} />
             ))}

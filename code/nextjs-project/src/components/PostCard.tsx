@@ -7,6 +7,7 @@ import TagPill from "./TagPill";
 import Avatar from "./Avatar";
 import { toggleLike, toggleSave, formatCount } from "@/lib/interactions";
 import CommentModal from "./CommentModal";
+import "./PostCard.css";
 
 interface PostCardProps {
   post: Post;
@@ -35,72 +36,43 @@ export default function PostCard({ post, onTagClick }: PostCardProps) {
 
   return (
     <>
-      <div className="post-card animate-fade-in">
-        {/* Image */}
-        <div className="relative overflow-hidden" style={{ aspectRatio: "4/3" }}>
+      <div className="post-card">
+        <div className="post-card-image-wrap">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={post.imageUrl}
-            alt={post.description || "Photo League post"}
-            className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-          />
+          <img src={post.imageUrl} alt={post.description || "post"} />
         </div>
 
-        {/* Footer */}
-        <div className="p-3 flex items-center justify-between gap-2 bg-white">
-          {/* Tags */}
-          <div className="flex flex-wrap gap-1 flex-1 min-w-0">
+        <div className="post-card-footer">
+          <div className="post-card-tags">
             {post.tags.map((tag) => (
-              <TagPill
-                key={tag}
-                tag={tag}
-                onClick={() => onTagClick?.(tag)}
-              />
+              <TagPill key={tag} tag={tag} onClick={() => onTagClick?.(tag)} />
             ))}
           </div>
 
-          {/* Actions */}
-          <div className="flex items-center gap-3 flex-shrink-0">
-            {/* Like */}
+          <div className="post-card-actions">
             <button
+              className="post-card-like-btn"
               onClick={handleLike}
-              className="flex items-center gap-1 transition-all duration-200"
               style={{ transform: isAnimating ? "scale(1.3)" : "scale(1)" }}
             >
-              <Heart
-                size={18}
-                fill={liked ? "#ff4d6d" : "none"}
-                stroke={liked ? "#ff4d6d" : "#888"}
-                strokeWidth={2}
-              />
-              <span className="text-xs font-mono text-gray-600">{formatCount(likesCount)}</span>
+              <Heart size={18} fill={liked ? "#ff4d6d" : "none"} stroke={liked ? "#ff4d6d" : "#888"} strokeWidth={2} />
+              <span className="post-card-like-count">{formatCount(likesCount)}</span>
             </button>
 
-            {/* Comment */}
-            <button onClick={() => setShowComments(true)} className="flex items-center gap-1 transition-all hover:scale-110">
+            <button className="post-card-icon-btn" onClick={() => setShowComments(true)}>
               <MessageCircle size={18} stroke="#888" strokeWidth={2} />
             </button>
 
-            {/* Save */}
-            <button onClick={handleSave} className="flex items-center gap-1 transition-all hover:scale-110">
-              <Bookmark
-                size={18}
-                fill={saved ? "#00BFB3" : "none"}
-                stroke={saved ? "#00BFB3" : "#888"}
-                strokeWidth={2}
-              />
+            <button className="post-card-icon-btn" onClick={handleSave}>
+              <Bookmark size={18} fill={saved ? "#00BFB3" : "none"} stroke={saved ? "#00BFB3" : "#888"} strokeWidth={2} />
             </button>
 
-            {/* Author avatar */}
             <Avatar src={post.author.avatar} username={post.author.username} size={32} showRing />
           </div>
         </div>
       </div>
 
-      {/* Comment Modal */}
-      {showComments && (
-        <CommentModal post={post} onClose={() => setShowComments(false)} />
-      )}
+      {showComments && <CommentModal post={post} onClose={() => setShowComments(false)} />}
     </>
   );
 }
