@@ -3,6 +3,8 @@
 # That will be provided to you
 ###############################################################################
 keypath = "id_ed25519_server_key" # The name to the private key you need to communicate with your instances
+ACCESSKEY = ""
+SECRETKEY = ""
 ###############################################################################
 # Debugging information settings
 # No need to change these values

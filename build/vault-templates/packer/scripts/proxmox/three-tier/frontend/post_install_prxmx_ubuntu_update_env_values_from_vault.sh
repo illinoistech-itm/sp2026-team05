@@ -18,3 +18,5 @@ sudo sed -i "s|^GOOGLE_CLIENT_ID=|GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID|" /home/nex
 sudo sed -i "s|^GOOGLE_CLIENT_SECRET=|GOOGLE_CLIENT_SECRET=$GOOGLE_CLIENT_SECRET|" /home/nextjsuser/.env
 sudo sed -i "s|^AUTH_TRUST_HOST=|AUTH_TRUST_HOST=$AUTH_TRUST_HOST|" /home/nextjsuser/.env
 sudo sed -i "s|^AUTH_URL=|AUTH_URL=$AUTH_URL|" /home/nextjsuser/.env
+sudo sed -i "s|^ACCESSKEY=|ACCESSKEY=$ACCESSKEY|" /home/nextjsuser/.env
+sudo sed -i "s|^SECRETKEY=|SECRETKEY=$SECRETKEY|" /home/nextjsuser/.env

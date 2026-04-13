@@ -89,6 +89,14 @@ locals {
   NEXTAUTH_URL = vault("/secret/data/NEXTAUTH", "NEXTAUTH_URL")
 }
 
+locals {
+  ACCESSKEY = vault("/secret/data/ACCESSKEY", "ACCESSKEY")
+}
+
+locals {
+  SECRETKEY = vault("/secret/data/SECRETKEY", "SECRETKEY")
+}
+
 variable "MEMORY" {
   type    = string
   default = "8192"

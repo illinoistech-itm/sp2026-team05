@@ -42,6 +42,8 @@ variable "backend-disk_size" {}
 variable "lb-disk_size" {}
 
 variable "keypath" {}
+variable "ACCESSKEY" {}
+variable "SECRETKEY" {}
 
 variable "frontend-yourinitials" {}
 variable "backend-yourinitials" {}
