@@ -51,9 +51,9 @@ export const mockPosts: Post[] = [
   { id: "20", imageUrl: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600", description: "New setup", tags: ["Gaming", "PC"], likesCount: 9800, commentsCount: 210, isLiked: true, isSaved: true, author: mockUsers[18], createdAt: "2023-12-27" },
   { id: "21", imageUrl: "https://images.unsplash.com/photo-1495616811223-4d98c6e9c869?w=600", description: "Last light", tags: ["Sunset", "Gold"], likesCount: 2100, commentsCount: 39, isLiked: false, isSaved: false, author: mockUsers[19], createdAt: "2023-12-26" },
   { id: "22", imageUrl: "https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?w=600", description: "Simple living", tags: ["White", "Clean"], likesCount: 1200, commentsCount: 14, isLiked: false, isSaved: true, author: mockUsers[20], createdAt: "2023-12-25" },
-  { id: "23", imageUrl: "https://images.unsplash.com/photo-1485955900006-10f4d324d445?w=600", description: "Succulent life", tags: ["Plants", "Green"], likesCount: 850, commentsCount: 31, isLiked: true, isSaved: false, author: mockUsers[21], createdAt: "2023-12-24" },
+  { id: "23", imageUrl: "https://126851030.cdn6.editmysite.com/uploads/1/2/6/8/126851030/NPRRRAL4YX2PKDUNNCFNSD53.jpeg?width=2400&optimize=medium", description: "Succulent life", tags: ["Plants", "Green"], likesCount: 850, commentsCount: 31, isLiked: true, isSaved: false, author: mockUsers[21], createdAt: "2023-12-24" },
   { id: "24", imageUrl: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600", description: "Studio session", tags: ["Studio", "Music"], likesCount: 3400, commentsCount: 77, isLiked: false, isSaved: false, author: mockUsers[22], createdAt: "2023-12-23" },
-  { id: "25", imageUrl: "https://images.unsplash.com/photo-1493397869517-230092c94a4c?w=600", description: "Downtown Chicago", tags: ["City", "Chi"], likesCount: 6700, commentsCount: 145, isLiked: true, isSaved: true, author: mockUsers[24], createdAt: "2023-12-22" },
+  { id: "25", imageUrl: "https://chicagorentals.com/wp-content/uploads/2025/04/Chicago-Loop-Chicago-Riverwalk.jpg", description: "Downtown Chicago", tags: ["City", "Chi"], likesCount: 6700, commentsCount: 145, isLiked: true, isSaved: true, author: mockUsers[24], createdAt: "2023-12-22" },
 ];
 
 export const mockConversations: Conversation[] = [
