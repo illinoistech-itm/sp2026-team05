@@ -2,30 +2,43 @@
 USE posts;
 
 INSERT INTO posts (
-    id, image_url, description, tags,
-    likes_count, comments_count,
+    id, image_url, description, tags, 
+    likes_count, comments_count, 
     is_liked, is_saved, author_id, created_at
-) VALUES
-(1, 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=500&fit=crop',
- 'Beautiful ocean sunset', '["H2O","Sunset"]',
- 2800, 42, FALSE, TRUE, 1, '2024-01-15'),
-
-(2, 'https://images.unsplash.com/photo-1607153333879-c174d265f1d2?w=600&h=500&fit=crop',
- 'Friendly dolphin', '["Water","Dolphin"]',
- 1400, 28, TRUE, FALSE, 1, '2024-01-14'),
-
-(3, 'https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=600&h=500&fit=crop',
- 'Ocean blues', '["Ocean","Blue"]',
- 10100, 156, FALSE, FALSE, 2, '2024-01-13'),
-
-(4, 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=500&fit=crop',
- 'Wave close up', '["H2O","repost"]',
- 3500, 67, FALSE, FALSE, 0, '2024-01-12'),
-
-(5, 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=600&h=500&fit=crop',
- 'Sunset at sea', '["H2O","Sunset"]',
- 2800, 39, FALSE, FALSE, 3, '2024-01-11'),
-
-(6, 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=500&fit=crop',
- 'Dolphin jumping', '["Dolph","jumps"]',
- 1400, 21, FALSE, FALSE, 4, '2024-01-10');
+) VALUES 
+(1,  'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=500&fit=crop', 'Beautiful ocean sunset',      '["H2O","Sunset"]',   2800,  42,  FALSE, TRUE,  1, '2024-01-15'),
+(2,  'https://images.unsplash.com/photo-1607153333879-c174d265f1d2?w=600&h=500&fit=crop', 'Friendly dolphin',            '["Water","Dolphin"]', 1400,  28,  TRUE,  FALSE, 1, '2024-01-14'),
+(3,  'https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=600&h=500&fit=crop', 'Ocean blues',                 '["Ocean","Blue"]',   10100, 156, FALSE, FALSE, 2, '2024-01-13'),
+(4,  'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=500&fit=crop', 'Wave close up',               '["H2O","repost"]',   3500,  67,  FALSE, FALSE, 0, '2024-01-12'),
+(5,  'https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=600&h=500&fit=crop', 'Sunset at sea',               '["H2O","Sunset"]',   2800,  39,  FALSE, FALSE, 3, '2024-01-11'),
+(6,  'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=500&fit=crop', 'Dolphin jumping',             '["Dolph","jumps"]',  1400,  21,  FALSE, FALSE, 4, '2024-01-10'),
+(7,  'https://images.unsplash.com/photo-1449034446853-66c86144b0ad?w=600&h=500&fit=crop', 'Golden Gate Bridge morning',  '["Travel","Bridge"]', 5200,  89,  FALSE, FALSE, 2, '2024-01-09'),
+(8,  'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&h=500&fit=crop', 'Mist over the valley',        '["Nature","Fog"]',    890,   15,  TRUE,  TRUE,  5, '2024-01-08'),
+(9,  'https://images.unsplash.com/photo-1514565131-fce0801e5785?w=600&h=500&fit=crop', 'Cyberpunk city streets',      '["Urban","Neon"]',   12400, 310, FALSE, TRUE,  1, '2024-01-07'),
+(10, 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600&h=500&fit=crop', 'Crystal clear lake reflection', '["Water","Zen"]',    3100,  42,  FALSE, FALSE, 3, '2024-01-06'),
+(11, 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&h=500&fit=crop', 'Majestic mountain peaks',     '["Hiking","Peaks"]',  4500,  112, TRUE,  FALSE, 4, '2024-01-05'),
+(12, 'https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?w=600&h=500&fit=crop', 'Deep forest trail',           '["Green","Forest"]',  670,   8,   FALSE, FALSE, 2, '2024-01-04'),
+(13, 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&h=500&fit=crop', 'Grand Canyon depths',         '["Canyon","Red"]',    9200,  245, TRUE,  TRUE,  0, '2024-01-03'),
+(14, 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=600&h=500&fit=crop', 'Starry mountain night',       '["Space","Sky"]',    15000, 560, FALSE, TRUE,  5, '2024-01-02'),
+(15, 'https://images.unsplash.com/photo-1426604966848-d7adac402bdb?w=600&h=500&fit=crop', 'Hidden jungle waterfall',     '["River","Wild"]',    2300,  54,  FALSE, FALSE, 1, '2024-01-01'),
+(16, 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&h=500&fit=crop', 'Rolling green hills',         '["Rural","Peace"]',   430,   12,  TRUE,  FALSE, 3, '2023-12-31'),
+(17, 'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=600&h=500&fit=crop', 'Valley floor at dusk',        '["Sunset","View"]',   780,   21,  FALSE, FALSE, 4, '2023-12-30'),
+(18, 'https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=600&h=500&fit=crop', 'Autumn leaf closeup',         '["Fall","Macro"]',    320,   5,   FALSE, TRUE,  2, '2023-12-29'),
+(19, 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&h=500&fit=crop', 'Sunbeams in the woods',       '["Light","Trees"]',   6100,  130, TRUE,  TRUE,  1, '2023-12-28'),
+(20, 'https://images.unsplash.com/photo-1532274402911-5a3b04759bd7?w=600&h=500&fit=crop', 'Rice terraces at noon',       '["Farm","Asia"]',     1100,  29,  FALSE, FALSE, 0, '2023-12-27'),
+(21, 'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=600&h=500&fit=crop', 'Ancient stone bridge',        '["Old","History"]',   950,   18,  FALSE, TRUE,  5, '2023-12-26'),
+(22, 'https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=600&h=500&fit=crop', 'Beach shoreline wave',        '["Ocean","Shore"]',   2800,  62,  TRUE,  FALSE, 3, '2023-12-25'),
+(23, 'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&h=500&fit=crop', 'Aerial landscape view',       '["Height","Blue"]',   4200,  88,  FALSE, TRUE,  4, '2023-12-24'),
+(24, 'https://images.unsplash.com/photo-1433086566088-e3256a2924ba?w=600&h=500&fit=crop', 'Mossy river stones',          '["Nature","Zen"]',    150,   4,   FALSE, FALSE, 2, '2023-12-23'),
+(25, 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&h=500&fit=crop', 'The open road ahead',         '["Drive","Trip"]',    3700,  95,  TRUE,  TRUE,  1, '2023-12-22'),
+(26, 'https://images.unsplash.com/photo-1414609245224-afa02bfb3fda?w=600&h=500&fit=crop', 'Snow covered pines',          '["Winter","Cold"]',   600,   14,  FALSE, FALSE, 0, '2023-12-21'),
+(27, 'https://images.unsplash.com/photo-1505144808419-1957a94ca61e?w=600&h=500&fit=crop', 'Tropical island lagoon',      '["Island","Aqua"]',   8900,  210, TRUE,  TRUE,  5, '2023-12-20'),
+(28, 'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=600&h=500&fit=crop', 'Alpine lake reflection',      '["Swiss","Lake"]',    2100,  48,  FALSE, TRUE,  3, '2023-12-19'),
+(29, 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=600&h=500&fit=crop', 'View from the ISS',           '["NASA","Earth"]',   24000, 980, TRUE,  TRUE,  4, '2023-12-18'),
+(30, 'https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?w=600&h=500&fit=crop', 'Dew on a green leaf',         '["Macro","Rain"]',    180,   6,   FALSE, FALSE, 2, '2023-12-17'),
+(31, 'https://images.unsplash.com/photo-1431411207774-da3c7311b5e8?w=600&h=500&fit=crop', 'Lavender field rows',         '["Purple","Italy"]',  5400,  120, TRUE,  FALSE, 1, '2023-12-16'),
+(32, 'https://images.unsplash.com/photo-1511497584788-876760111969?w=600&h=500&fit=crop', 'Dark forest silhouette',      '["Woods","Dark"]',    760,   24,  FALSE, FALSE, 0, '2023-12-15'),
+(33, 'https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=600&h=500&fit=crop', 'Snowy mountain range',        '["Ice","White"]',    1200,  31,  TRUE,  TRUE,  5, '2023-12-14'),
+(34, 'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=600&h=500&fit=crop', 'Summer field flowers',        '["Spring","Wild"]',   840,   19,  FALSE, TRUE,  3, '2023-12-13'),
+(35, 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&h=500&fit=crop', 'Canoeing on the lake',        '["Sport","Boat"]',    1100,  33,  TRUE,  FALSE, 4, '2023-12-12'),
+(36, 'https://images.unsplash.com/photo-1501426026826-31c66bb2521f?w=600&h=500&fit=crop', 'Pink flamingo profile',       '["Bird","Pink"]',     980,   27,  FALSE, FALSE, 2, '2023-12-11');
