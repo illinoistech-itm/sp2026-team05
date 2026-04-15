@@ -89,12 +89,18 @@ locals {
   NEXTAUTH_URL = vault("/secret/data/NEXTAUTH", "NEXTAUTH_URL")
 }
 
+#MINIO secrets
 locals {
-  ACCESSKEY = vault("/secret/data/ACCESSKEY", "ACCESSKEY")
+  MINIO_ACCESS_KEY = vault("/secret/data/MINIO", "MINIO_ACCESS_KEY")
 }
-
 locals {
-  SECRETKEY = vault("/secret/data/SECRETKEY", "SECRETKEY")
+  MINIO_SECRET_KEY = vault("/secret/data/MINIO", "MINIO_SECRET_KEY")
+}
+locals {
+  MINIO_ENDPOINT = vault("/secret/data/MINIO", "MINIO_ENDPOINT")
+}
+locals {
+  MINIO_BUCKET_NAME = vault("/secret/data/MINIO", "S3_BUCKET_NAME")
 }
 
 variable "MEMORY" {
