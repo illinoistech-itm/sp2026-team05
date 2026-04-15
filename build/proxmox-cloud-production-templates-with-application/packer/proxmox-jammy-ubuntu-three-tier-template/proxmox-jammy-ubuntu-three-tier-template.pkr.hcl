@@ -747,7 +747,7 @@ build {
       "../scripts/proxmox/three-tier/frontend/post_install_prxmx_frontend-install_nextjs_service_dependencies.sh",
       "../scripts/proxmox/three-tier/frontend/post_install_prxmx_ubuntu_move_application_files_for_nextjs.sh",
       "../scripts/proxmox/three-tier/frontend/post_install_prxmx_ubuntu_update_env_values_from_vault.sh"]
-    environment_vars = ["DBUSER=${local.DBUSER}", "DBPASS=${local.DBPASS}", "DATABASE=${local.DATABASE}", "FQDN=${local.FQDN}", "GOOGLE_CLIENT_ID=${local.GOOGLE_CLIENT_ID}", "GOOGLE_CLIENT_SECRET=${local.GOOGLE_CLIENT_SECRET}", "AUTH_TRUST_HOST=${local.AUTH_TRUST_HOST}", "AUTH_URL=${local.AUTH_URL}", "NEXTAUTH_SECRET=${local.NEXTAUTH_SECRET}", "NEXTAUTH_URL=${local.NEXTAUTH_URL}", "ACCESSKEY=${local.ACCESSKEY}", "SECRETKEY=${local.SECRETKEY}"]
+    environment_vars = ["DBUSER=${local.DBUSER}", "DBPASS=${local.DBPASS}", "DATABASE=${local.DATABASE}", "FQDN=${local.FQDN}", "GOOGLE_CLIENT_ID=${local.GOOGLE_CLIENT_ID}", "GOOGLE_CLIENT_SECRET=${local.GOOGLE_CLIENT_SECRET}", "AUTH_TRUST_HOST=${local.AUTH_TRUST_HOST}", "AUTH_URL=${local.AUTH_URL}", "NEXTAUTH_SECRET=${local.NEXTAUTH_SECRET}", "NEXTAUTH_URL=${local.NEXTAUTH_URL}", "MINIO_ENDPOINT=${local.MINIO_ENDPOINT}", "MINIO_ACCESS_KEY=${local.MINIO_ACCESS_KEY}", "MINIO_SECRET_KEY=${local.MINIO_SECRET_KEY}", "MINIO_BUCKET_NAME=${local.MINIO_BUCKET_NAME}"]
     only             = ["proxmox-iso.frontend-webserver82","proxmox-iso.frontend-webserver83","proxmox-iso.frontend-webserver84"]
   }
 

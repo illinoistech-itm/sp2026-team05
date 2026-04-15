@@ -18,5 +18,8 @@ sudo sed -i "s|^GOOGLE_CLIENT_ID=|GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID|" /home/vag
 sudo sed -i "s|^GOOGLE_CLIENT_SECRET=|GOOGLE_CLIENT_SECRET=$GOOGLE_CLIENT_SECRET|" /home/vagrant/nextjs-project/.env
 sudo sed -i "s|^AUTH_TRUST_HOST=|AUTH_TRUST_HOST=$AUTH_TRUST_HOST|" /home/vagrant/nextjs-project/.env
 sudo sed -i "s|^AUTH_URL=|AUTH_URL=$AUTH_URL|" /home/vagrant/nextjs-project/.env
-sudo sed -i "s|^ACCESSKEY=|ACCESSKEY=$ACCESSKEY|" /home/vagrant/nextjs-project/.env
-sudo sed -i "s|^SECRETKEY=|SECRETKEY=$SECRETKEY|" /home/vagrant/nextjs-project/.env
+sudo sed -i "s|^MINIO_ENDPOINT=|MINIO_ENDPOINT=$MINIO_ENDPOINT|" /home/vagrant/nextjs-project/.env
+sudo sed -i "s|^MINIO_ACCESS_KEY=|MINIO_ACCESS_KEY=$MINIO_ACCESS_KEY|" /home/vagrant/nextjs-project/.env
+sudo sed -i "s|^MINIO_SECRET_KEY=|MINIO_SECRET_KEY=$MINIO_SECRET_KEY|" /home/vagrant/nextjs-project/.env
+sudo sed -i "s|^MINIO_BUCKET_NAME=|MINIO_BUCKET_NAME=$MINIO_BUCKET_NAME|" /home/vagrant/nextjs-project/.env
+
