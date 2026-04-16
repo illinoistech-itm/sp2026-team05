@@ -3,7 +3,7 @@
 # Install and prepare backend database
 echo "############ Installing My SQL Server #####################"
 sudo apt update
-sudo apt install mysql-server
+sudo apt install mysql-server-8.0
 echo "############ Install of MySQL Server Complete #####################"
 # Required to have the mysql.service start at boot time
 sudo systemctl enable mysql.service
