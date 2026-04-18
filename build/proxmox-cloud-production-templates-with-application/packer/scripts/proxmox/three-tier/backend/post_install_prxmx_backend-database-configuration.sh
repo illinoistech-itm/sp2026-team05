@@ -24,8 +24,10 @@ sudo mysql -e "GRANT SELECT,INSERT,CREATE TEMPORARY TABLES ON posts.* TO '${DBUS
 
 # These sample files are located in the mysql directory but need to be part of 
 # your private team repo
-sudo mysql < ./create-database.sql
-sudo mysql < ./create-table.sql
-sudo mysql < ./insert-records.sql
+#sudo mysql < ./create-database.sql
+#sudo mysql < ./create-table.sql
+#sudo mysql < ./insert-records.sql
 # Comment out after testing 
-sudo mysql < ./create-users-with-permissions.sql
+sudo mysql < ./schema.sql
+sudo mysql < ./create-user-with-permissions.sql
+#sudo mysql < ./insert-records.sql
