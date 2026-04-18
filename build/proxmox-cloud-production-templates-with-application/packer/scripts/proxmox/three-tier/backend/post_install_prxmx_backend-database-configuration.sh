@@ -10,7 +10,7 @@
 
 # Change directory to the location of your JS code
 cd /home/vagrant/sp2026-team05/code/db-samples
-
+ls -lah
 # Inline MySQL code that uses the secrets passed via the ENVIRONMENT VARIABLES to create a non-root user
 # IPRANGE is "10.110.%.%"
 
