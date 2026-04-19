@@ -1,17 +1,47 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Search, X } from "lucide-react";
+import { useSession, signIn } from "next-auth/react";
 import Navbar from "@/components/Navbar";
 import PostCard from "@/components/PostCard";
-import { mockPosts } from "@/lib/mockData";
 import { filterPostsByTag } from "@/lib/hashtags";
 import "./home.css";
 
 export default function HomePage() {
-  const [posts] = useState(mockPosts);
+  const { data: session, status } = useSession();
+  const [posts, setPosts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
   const [searchTag, setSearchTag] = useState("");
   const [activeFilter, setActiveFilter] = useState("");
+
+  // Redirect to login if not authenticated
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      signIn();
+    }
+  }, [status]);
+
+  // Fetch posts from real API
+  useEffect(() => {
+    if (status === "authenticated") {
+      fetchPosts();
+    }
+  }, [status]);
+
+  const fetchPosts = async () => {
+    try {
+      setLoading(true);
+      const res = await fetch("/api/posts");
+      if (!res.ok) throw new Error("Failed to fetch posts");
+      const data = await res.json();
+      setPosts(data.posts || []);
+    } catch (error) {
+      console.error("Failed to fetch posts:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const filteredPosts = useMemo(() => {
     if (!activeFilter) return posts;
@@ -31,6 +61,16 @@ export default function HomePage() {
     setActiveFilter("");
     setSearchTag("");
   };
+
+  if (status === "loading" || loading) {
+    return (
+      <div className="home-page" style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "100vh" }}>
+        <p style={{ fontFamily: "Courier New, monospace", color: "white", fontSize: "1.1rem" }}>
+          Loading...
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className="home-page">
@@ -63,7 +103,9 @@ export default function HomePage() {
 
       <main className="home-grid-wrapper">
         {filteredPosts.length === 0 ? (
-          <div className="home-empty">No posts found for #{activeFilter}</div>
+          <div className="home-empty">
+            {activeFilter ? `No posts found for #${activeFilter}` : "No posts yet. Be the first to post!"}
+          </div>
         ) : (
           <div className="home-grid">
             {filteredPosts.map((post) => (
