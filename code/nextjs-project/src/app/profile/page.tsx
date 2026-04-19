@@ -1,24 +1,102 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Settings, MessageCircle } from "lucide-react";
+import { useSession, signIn } from "next-auth/react";
 import Navbar from "@/components/Navbar";
 import Avatar from "@/components/Avatar";
 import UploadModal from "@/components/UploadModal";
-import { currentUser, mockPosts, mockConversations } from "@/lib/mockData";
 import "./profile.css";
 
+interface UserProfile {
+  user_id: number;
+  username: string;
+  email: string;
+  profile_pic_url: string;
+  followers_count: number;
+  following_count: number;
+  posts_count: number;
+}
+
+interface Post {
+  post_id: number;
+  image_url: string;
+  caption: string;
+}
+
 export default function ProfilePage() {
+  const { data: session, status } = useSession();
+  const [profile, setProfile] = useState<UserProfile | null>(null);
+  const [myPosts, setMyPosts] = useState<Post[]>([]);
+  const [savedPosts, setSavedPosts] = useState<Post[]>([]);
   const [showUpload, setShowUpload] = useState(false);
-  const [showFollowers, setShowFollowers] = useState(false);
-  const [showFollowing, setShowFollowing] = useState(false);
   const [activeTab, setActiveTab] = useState<"photos" | "saved">("photos");
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
 
-  const myPosts = mockPosts.filter((p) => p.author.id === currentUser.id);
-  const savedPosts = mockPosts.filter((p) => p.isSaved);
+  // Redirect to login if not authenticated
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      signIn();
+    }
+  }, [status]);
+
+  // Fetch profile data
+  useEffect(() => {
+    if (status === "authenticated") {
+      fetchProfile();
+      fetchMyPosts();
+      fetchSavedPosts();
+    }
+  }, [status]);
+
+  const fetchProfile = async () => {
+    try {
+      const res = await fetch("/api/user/profile");
+      const data = await res.json();
+      setProfile(data.user);
+    } catch (error) {
+      console.error("Failed to fetch profile:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchMyPosts = async () => {
+    try {
+      const res = await fetch("/api/posts/my-posts");
+      const data = await res.json();
+      setMyPosts(data.posts || []);
+    } catch (error) {
+      console.error("Failed to fetch posts:", error);
+    }
+  };
+
+  const fetchSavedPosts = async () => {
+    try {
+      const res = await fetch("/api/posts/saved");
+      const data = await res.json();
+      setSavedPosts(data.posts || []);
+    } catch (error) {
+      console.error("Failed to fetch saved posts:", error);
+    }
+  };
+
   const displayPosts = activeTab === "photos" ? myPosts : savedPosts;
+
+  if (status === "loading" || loading) {
+    return (
+      <div className="profile-page" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <p style={{ fontFamily: "Courier New, monospace", color: "white" }}>Loading...</p>
+      </div>
+    );
+  }
+
+  if (!session) return null;
+
+  const username = profile?.username || session.user?.email?.split("@")[0] || "User";
+  const avatar = profile?.profile_pic_url || session.user?.image || "";
 
   return (
     <>
@@ -32,24 +110,29 @@ export default function ProfilePage() {
             </button>
 
             <div className="profile-header">
-              <Avatar src={currentUser.avatar} username={currentUser.username} size={100} showRing />
+              <Avatar src={avatar} username={username} size={100} showRing />
               <div className="profile-info">
-                <h1 className="profile-username">{currentUser.username}</h1>
-                <p className="profile-bio">{currentUser.bio}</p>
+                <h1 className="profile-username">{username}</h1>
+                <p className="profile-bio">{session.user?.email}</p>
+
                 <div className="profile-stats">
-                  <button className="profile-stat-btn" onClick={() => setShowFollowers(true)}>
-                    <Avatar src={mockConversations[0]?.participant.avatar} username="f" size={32} showRing />
-                    <span className="profile-stat-label">Followers {currentUser.followersCount}</span>
+                  <button className="profile-stat-btn">
+                    <span className="profile-stat-label">
+                      Followers {profile?.followers_count || 0}
+                    </span>
                   </button>
-                  <button className="profile-stat-btn" onClick={() => setShowFollowing(true)}>
-                    <Avatar src={mockConversations[1]?.participant.avatar} username="g" size={32} showRing />
-                    <span className="profile-stat-label">Following {currentUser.followingCount}</span>
+                  <button className="profile-stat-btn">
+                    <span className="profile-stat-label">
+                      Following {profile?.following_count || 0}
+                    </span>
                   </button>
                 </div>
               </div>
             </div>
 
-            <button className="profile-post-btn" onClick={() => setShowUpload(true)}>Post</button>
+            <button className="profile-post-btn" onClick={() => setShowUpload(true)}>
+              Post
+            </button>
 
             <div className="profile-tabs">
               {(["photos", "saved"] as const).map((tab) => (
@@ -58,7 +141,7 @@ export default function ProfilePage() {
                   onClick={() => setActiveTab(tab)}
                   className={`profile-tab ${activeTab === tab ? "active" : ""}`}
                 >
-                  {tab === "photos" ? "Photos" : "Saved Posts"}
+                  {tab === "photos" ? `Photos (${myPosts.length})` : `Saved Posts (${savedPosts.length})`}
                 </button>
               ))}
             </div>
@@ -70,11 +153,11 @@ export default function ProfilePage() {
                 </p>
               ) : (
                 displayPosts.map((post) => (
-                  <div key={post.id} className="profile-photo-thumb">
+                  <div key={post.post_id} className="profile-photo-thumb">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={post.imageUrl} alt={post.description} />
+                    <img src={post.image_url} alt={post.caption} />
                     <div className="profile-photo-overlay">
-                      <p className="profile-photo-caption">{post.description}</p>
+                      <p className="profile-photo-caption">{post.caption}</p>
                     </div>
                   </div>
                 ))
@@ -84,57 +167,7 @@ export default function ProfilePage() {
         </div>
       </div>
 
-      {showUpload && <UploadModal onClose={() => setShowUpload(false)} />}
-
-      {showFollowers && (
-        <FollowModal
-          title={`${currentUser.followersCount} Followers`}
-          users={mockConversations.map((c) => c.participant)}
-          onClose={() => setShowFollowers(false)}
-          onMessage={(user) => { router.push(`/messages?user=${user.id}`); setShowFollowers(false); }}
-        />
-      )}
-
-      {showFollowing && (
-        <FollowModal
-          title={`Following ${currentUser.followingCount}`}
-          users={mockConversations.map((c) => c.participant)}
-          onClose={() => setShowFollowing(false)}
-          onMessage={(user) => { router.push(`/messages?user=${user.id}`); setShowFollowing(false); }}
-        />
-      )}
+      {showUpload && <UploadModal onClose={() => setShowUpload(false)} onSuccess={fetchMyPosts} />}
     </>
-  );
-}
-
-function FollowModal({ title, users, onClose, onMessage }: {
-  title: string;
-  users: any[];
-  onClose: () => void;
-  onMessage: (user: any) => void;
-}) {
-  return (
-    <div className="follow-modal-overlay" onClick={onClose}>
-      <div className="follow-modal" onClick={(e) => e.stopPropagation()}>
-        <h2 className="follow-modal-title">{title}</h2>
-        <div className="follow-modal-list">
-          {users.map((user) => (
-            <div key={user.id} className="follow-modal-item">
-              <div className="follow-modal-avatar-wrap">
-                <Avatar src={user.avatar} username={user.username} size={48} showRing />
-                <div className="online-dot" />
-              </div>
-              <span className="follow-modal-username">{user.username}</span>
-              <button className="follow-modal-msg-btn" onClick={() => onMessage(user)}>
-                <MessageCircle size={22} />
-              </button>
-            </div>
-          ))}
-        </div>
-        <div className="follow-modal-footer">
-          <button className="follow-modal-close" onClick={onClose}>▼</button>
-        </div>
-      </div>
-    </div>
   );
 }
