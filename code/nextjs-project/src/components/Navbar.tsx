@@ -39,7 +39,7 @@ export default function Navbar({ showPost = true, showAvatar = true }: NavbarPro
         </div>
       </nav>
       {showUpload && (
-        <UploadModal onClose={() => setShowUpload(false)} onSuccess={(p) => console.log("posted", p)} />
+        <UploadModal onClose={() => setShowUpload(false)} onSuccess={() => console.log("posted")} />
       )}
     </>
   );
