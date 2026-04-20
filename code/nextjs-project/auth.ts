@@ -63,3 +63,5 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     strategy: "jwt",
   },
 });
+
+export const { GET, POST } = handlers;

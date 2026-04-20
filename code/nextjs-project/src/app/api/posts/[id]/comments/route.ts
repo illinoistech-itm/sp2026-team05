@@ -1,15 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { auth } from "@/lib/auth";
 import { query } from "@/lib/db";
 
 // GET /api/posts/[id]/comments - get comments for a post
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
-    const session = await getServerSession(authOptions);
+    const { id } = await context.params;
+    const session = await auth();
     if (!session?.user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -25,7 +25,7 @@ export async function GET(
        INNER JOIN users u ON c.user_id = u.user_id
        WHERE c.post_id = ?
        ORDER BY c.created_at ASC`,
-      [params.id]
+      [id]
     );
 
     const comments = rows.map((row: any) => ({
@@ -49,10 +49,11 @@ export async function GET(
 // POST /api/posts/[id]/comments - add a comment
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
-    const session = await getServerSession(authOptions);
+    const { id } = await context.params;
+    const session = await auth();
     if (!session?.user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -78,7 +79,7 @@ export async function POST(
 
     const [result]: any = await query(
       "INSERT INTO comments (post_id, user_id, content) VALUES (?, ?, ?)",
-      [params.id, user.user_id, text.trim()]
+      [id, user.user_id, text.trim()]
     );
 
     return NextResponse.json({

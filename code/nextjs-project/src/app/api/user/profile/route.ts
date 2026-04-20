@@ -1,15 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { auth } from "@/lib/auth";
 import db from "@/lib/db";
 
 // GET /api/user/profile - get current user profile
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await auth();
     if (!session?.user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
+    const userEmail = session.user.email ?? "";
 
     const [rows]: any = await db.execute(
       `SELECT 
@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
         (SELECT COUNT(*) FROM posts WHERE user_id = u.user_id) as posts_count
        FROM users u
        WHERE email = ?`,
-      [session.user.email]
+      [userEmail]
     );
 
     if (rows.length === 0) {
@@ -36,10 +36,11 @@ export async function GET(request: NextRequest) {
 // PATCH /api/user/profile - update username or bio
 export async function PATCH(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await auth();
     if (!session?.user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
+    const userEmail = session.user.email ?? "";
 
     const body = await request.json();
     const { username, bio } = body;
@@ -48,7 +49,7 @@ export async function PATCH(request: NextRequest) {
       // Check username isn't taken
       const [existing]: any = await db.execute(
         "SELECT user_id FROM users WHERE username = ? AND email != ?",
-        [username, session.user.email]
+        [username, userEmail]
       );
       if (existing.length > 0) {
         return NextResponse.json({ error: "Username already taken" }, { status: 409 });
@@ -56,7 +57,7 @@ export async function PATCH(request: NextRequest) {
 
       await db.execute(
         "UPDATE users SET username = ? WHERE email = ?",
-        [username, session.user.email]
+        [username, userEmail]
       );
     }
 

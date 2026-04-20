@@ -1,22 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { auth } from "@/lib/auth";
 import { query } from "@/lib/db";
 
 // POST /api/posts/[id]/like - like a post
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
-    const session = await getServerSession(authOptions);
+    const { id: postId } = await context.params;
+    const session = await auth();
     if (!session?.user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const userEmail = session.user.email ?? "";
-    const postId = params.id;
-
     const [userRows]: any = await query(
       "SELECT user_id FROM users WHERE email = ?",
       [userEmail]
@@ -46,17 +44,16 @@ export async function POST(
 // DELETE /api/posts/[id]/like - unlike a post
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
-    const session = await getServerSession(authOptions);
+    const { id: postId } = await context.params;
+    const session = await auth();
     if (!session?.user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const userEmail = session.user.email ?? "";
-    const postId = params.id;
-
     const [userRows]: any = await query(
       "SELECT user_id FROM users WHERE email = ?",
       [userEmail]
