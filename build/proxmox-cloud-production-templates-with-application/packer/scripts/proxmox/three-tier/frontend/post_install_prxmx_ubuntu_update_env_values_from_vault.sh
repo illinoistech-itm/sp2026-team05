@@ -21,5 +21,5 @@ sudo sed -i "s|^AUTH_URL=|AUTH_URL=$AUTH_URL|" /home/vagrant/nextjs-project/.env
 sudo sed -i "s|^MINIO_ENDPOINT=|MINIO_ENDPOINT=$MINIO_ENDPOINT|" /home/vagrant/nextjs-project/.env
 sudo sed -i "s|^MINIO_ACCESS_KEY=|MINIO_ACCESS_KEY=$MINIO_ACCESS_KEY|" /home/vagrant/nextjs-project/.env
 sudo sed -i "s|^MINIO_SECRET_KEY=|MINIO_SECRET_KEY=$MINIO_SECRET_KEY|" /home/vagrant/nextjs-project/.env
-sudo sed -i "s|^MINIO_BUCKET_NAME=|MINIO_BUCKET_NAME=$MINIO_BUCKET_NAME|" /home/vagrant/nextjs-project/.env
+sudo sed -i "s|^S3_BUCKET_NAME=|S3_BUCKET_NAME=$S3_BUCKET_NAME|" /home/vagrant/nextjs-project/.env
 
