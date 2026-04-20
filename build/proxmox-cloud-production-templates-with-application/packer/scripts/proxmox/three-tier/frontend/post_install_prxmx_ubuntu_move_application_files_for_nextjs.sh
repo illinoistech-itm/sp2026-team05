@@ -8,8 +8,8 @@ cd /home/vagrant/nextjs-project/
 
 # Run NPM install to download all dependencies from the package.json
 # We don't want to be pushing node_module directory around!
-npm install
-npm run build
+sudo -u vagrant npm install
+sudo -u vagrant npm run build
 
 sudo -u vagrant pm2 start npm --name "nextjs-project" -- run start
 
