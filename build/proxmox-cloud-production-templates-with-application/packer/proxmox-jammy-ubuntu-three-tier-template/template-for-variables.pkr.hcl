@@ -100,7 +100,7 @@ locals {
   MINIO_ENDPOINT = vault("/secret/data/MINIO", "MINIO_ENDPOINT")
 }
 locals {
-  MINIO_BUCKET_NAME = vault("/secret/data/MINIO", "S3_BUCKET_NAME")
+  S3_BUCKET_NAME = vault("/secret/data/MINIO", "S3_BUCKET_NAME")
 }
 
 variable "MEMORY" {
