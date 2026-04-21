@@ -11,6 +11,7 @@ cd /home/vagrant/nextjs-project/
 sudo -u vagrant npm install
 sudo -u vagrant npm run build
 
+export NODE_EXTRA_CA_CERTS=/home/vagrant/signed.crt
 sudo -u vagrant pm2 start npm --name "nextjs-project" -- run start
 
 #saves pm2 process list
