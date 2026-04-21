@@ -1,13 +1,36 @@
 import * as Minio from 'minio'
 
-const { hostname, port, protocol } = new URL(process.env.MINIO_ENDPOINT as string)
+function getRequiredEnv(name: string): string {
+  const value = process.env[name]?.trim()
 
-const minioClient = new Minio.Client({
-  endPoint: hostname,
-  ...(port && { port: parseInt(port) }),
-  useSSL: protocol === 'https:',
-  accessKey: process.env.MINIO_ACCESS_KEY as string,
-  secretKey: process.env.MINIO_SECRET_KEY as string,
-})
+  if (!value) {
+    throw new Error(`Missing required environment variable: ${name}`)
+  }
 
-export default minioClient
+  return value
+}
+
+export function getMinioEndpoint(): string {
+  const endpoint = getRequiredEnv('MINIO_ENDPOINT')
+
+  try {
+    new URL(endpoint)
+  } catch {
+    throw new Error('MINIO_ENDPOINT must be a valid absolute URL')
+  }
+
+  return endpoint
+}
+
+export function getMinioClient(): Minio.Client {
+  const endpoint = getMinioEndpoint()
+  const { hostname, port, protocol } = new URL(endpoint)
+
+  return new Minio.Client({
+    endPoint: hostname,
+    ...(port && { port: parseInt(port, 10) }),
+    useSSL: protocol === 'https:',
+    accessKey: getRequiredEnv('MINIO_ACCESS_KEY'),
+    secretKey: getRequiredEnv('MINIO_SECRET_KEY'),
+  })
+}
