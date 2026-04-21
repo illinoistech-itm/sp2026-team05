@@ -21,7 +21,7 @@ sudo mysql -e "GRANT ALL PRIVILEGES ON photo_league.* TO '${DBUSER}'@'${IPRANGE}
 # for debugging purposes only to connect via localhost (or the mysql CLI)
 
 sudo mysql -e "GRANT ALL PRIVILEGES ON photo_league.* TO '${DBUSER}'@'localhost' IDENTIFIED BY '${DBPASS}';"
-
+FLUSH PRIVILEGES;
 
 # These sample files are located in the mysql directory but need to be part of 
 # your private team repo
