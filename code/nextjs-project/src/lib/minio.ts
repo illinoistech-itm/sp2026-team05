@@ -1,4 +1,5 @@
 import * as Minio from 'minio'
+import https from 'https'
 
 function getRequiredEnv(name: string): string {
   const value = process.env[name]?.trim()
@@ -25,12 +26,19 @@ export function getMinioEndpoint(): string {
 export function getMinioClient(): Minio.Client {
   const endpoint = getMinioEndpoint()
   const { hostname, port, protocol } = new URL(endpoint)
+  const isSSL = protocol === 'https:'
 
   return new Minio.Client({
     endPoint: hostname,
     ...(port && { port: parseInt(port, 10) }),
-    useSSL: protocol === 'https:',
+    useSSL: isSSL,
     accessKey: getRequiredEnv('MINIO_ACCESS_KEY'),
     secretKey: getRequiredEnv('MINIO_SECRET_KEY'),
+    // Accept self-signed certificates
+    ...(isSSL && {
+      transportAgent: new https.Agent({
+        rejectUnauthorized: false,
+      }),
+    }),
   })
 }
