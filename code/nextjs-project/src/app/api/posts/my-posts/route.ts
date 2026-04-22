@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import db from "@/lib/db";
+import { ensureCurrentUser } from "@/lib/current-user";
 
 // GET /api/posts/my-posts - get current user's posts
 export async function GET(request: NextRequest) {
@@ -9,7 +10,8 @@ export async function GET(request: NextRequest) {
     if (!session?.user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
-    const userEmail = session.user.email ?? "";
+    const currentUser = await ensureCurrentUser(session.user);
+    const userEmail = currentUser.email;
 
     const [rows]: any = await db.execute(
       `SELECT p.post_id, p.image_url, p.caption, p.created_at,

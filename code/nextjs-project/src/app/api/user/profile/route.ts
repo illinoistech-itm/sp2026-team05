@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import db from "@/lib/db";
+import { ensureCurrentUser } from "@/lib/current-user";
 
 // GET /api/user/profile - get current user profile
 export async function GET(request: NextRequest) {
@@ -9,7 +10,8 @@ export async function GET(request: NextRequest) {
     if (!session?.user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
-    const userEmail = session.user.email ?? "";
+    const currentUser = await ensureCurrentUser(session.user);
+    const userEmail = currentUser.email;
 
     const [rows]: any = await db.execute(
       `SELECT 
@@ -21,10 +23,6 @@ export async function GET(request: NextRequest) {
        WHERE email = ?`,
       [userEmail]
     );
-
-    if (rows.length === 0) {
-      return NextResponse.json({ error: "User not found" }, { status: 404 });
-    }
 
     return NextResponse.json({ user: rows[0] });
   } catch (error) {
@@ -40,7 +38,8 @@ export async function PATCH(request: NextRequest) {
     if (!session?.user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
-    const userEmail = session.user.email ?? "";
+    const currentUser = await ensureCurrentUser(session.user);
+    const userEmail = currentUser.email;
 
     const body = await request.json();
     const { username, bio } = body;

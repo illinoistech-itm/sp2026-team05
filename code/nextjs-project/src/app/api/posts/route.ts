@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import db, { query } from "@/lib/db";
+import { query } from "@/lib/db";
+import { ensureCurrentUser } from "@/lib/current-user";
 
 // GET /api/posts - get all posts for the feed
 export async function GET(request: NextRequest) {
@@ -90,17 +91,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Image URL is required" }, { status: 400 });
     }
 
-    const userEmail = session.user.email ?? "";
-
-    // Get user ID
-    const [userRows]: any = await query(
-      "SELECT user_id FROM users WHERE email = ?",
-      [userEmail]
-    );
-    if (userRows.length === 0) {
-      return NextResponse.json({ error: "User not found" }, { status: 404 });
-    }
-    const userId = userRows[0].user_id;
+    const user = await ensureCurrentUser(session.user);
+    const userId = user.user_id;
 
     // Insert post
     const [result]: any = await query(

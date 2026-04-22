@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { query } from "@/lib/db";
+import { ensureCurrentUser } from "@/lib/current-user";
 
 // POST /api/posts/[id]/save - save a post
 export async function POST(
@@ -14,19 +15,11 @@ export async function POST(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const userEmail = session.user.email ?? "";
-
-    const [userRows]: any = await query(
-      "SELECT user_id FROM users WHERE email = ?",
-      [userEmail]
-    );
-    if (userRows.length === 0) {
-      return NextResponse.json({ error: "User not found" }, { status: 404 });
-    }
+    const user = await ensureCurrentUser(session.user);
 
     await query(
       "INSERT IGNORE INTO saved_posts (user_id, post_id) VALUES (?, ?)",
-      [userRows[0].user_id, id]
+      [user.user_id, id]
     );
 
     return NextResponse.json({ saved: true });
@@ -48,19 +41,11 @@ export async function DELETE(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const userEmail = session.user.email ?? "";
-
-    const [userRows]: any = await query(
-      "SELECT user_id FROM users WHERE email = ?",
-      [userEmail]
-    );
-    if (userRows.length === 0) {
-      return NextResponse.json({ error: "User not found" }, { status: 404 });
-    }
+    const user = await ensureCurrentUser(session.user);
 
     await query(
       "DELETE FROM saved_posts WHERE user_id = ? AND post_id = ?",
-      [userRows[0].user_id, id]
+      [user.user_id, id]
     );
 
     return NextResponse.json({ saved: false });

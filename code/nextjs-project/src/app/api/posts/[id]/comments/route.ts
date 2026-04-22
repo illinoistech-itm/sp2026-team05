@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { query } from "@/lib/db";
+import { ensureCurrentUser } from "@/lib/current-user";
 
 // GET /api/posts/[id]/comments - get comments for a post
 export async function GET(
@@ -65,17 +66,7 @@ export async function POST(
       return NextResponse.json({ error: "Comment cannot be empty" }, { status: 400 });
     }
 
-    const userEmail = session.user.email ?? "";
-
-    const [userRows]: any = await query(
-      "SELECT user_id, username, profile_pic_url FROM users WHERE email = ?",
-      [userEmail]
-    );
-    if (userRows.length === 0) {
-      return NextResponse.json({ error: "User not found" }, { status: 404 });
-    }
-
-    const user = userRows[0];
+    const user = await ensureCurrentUser(session.user);
 
     const [result]: any = await query(
       "INSERT INTO comments (post_id, user_id, content) VALUES (?, ?, ?)",
