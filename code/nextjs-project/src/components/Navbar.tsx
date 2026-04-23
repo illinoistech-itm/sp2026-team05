@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import Logo from "./Logo";
 import Avatar from "./Avatar";
 import UploadModal from "./UploadModal";
-import { currentUser } from "@/lib/mockData";
 import "./Navbar.css";
 
 interface NavbarProps {
@@ -15,7 +15,11 @@ interface NavbarProps {
 
 export default function Navbar({ showPost = true, showAvatar = true }: NavbarProps) {
   const [showUpload, setShowUpload] = useState(false);
+  const { data: session } = useSession();
   const router = useRouter();
+
+  const username = (session?.user as any)?.username || session?.user?.email?.split("@")[0] || "U";
+  const avatar = (session?.user as any)?.profilePic || session?.user?.image || "";
 
   return (
     <>
@@ -29,8 +33,8 @@ export default function Navbar({ showPost = true, showAvatar = true }: NavbarPro
           )}
           {showAvatar && (
             <Avatar
-              src={currentUser.avatar}
-              username={currentUser.username}
+              src={avatar}
+              username={username}
               size={50}
               showRing
               onClick={() => router.push("/profile")}
@@ -39,7 +43,7 @@ export default function Navbar({ showPost = true, showAvatar = true }: NavbarPro
         </div>
       </nav>
       {showUpload && (
-        <UploadModal onClose={() => setShowUpload(false)} onSuccess={() => console.log("posted")} />
+        <UploadModal onClose={() => setShowUpload(false)} onSuccess={(p) => console.log("posted", p)} />
       )}
     </>
   );

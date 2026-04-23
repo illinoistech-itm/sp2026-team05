@@ -6,11 +6,10 @@ import { uploadImage, validateImageFile, createImagePreview, revokeImagePreview 
 import "./UploadModal.css";
 
 interface UploadModalProps {
-  // Called when the user clicks Cancel or the backdrop/X button
   onClose: () => void;
-  // Called after a post is successfully saved to the database
-  onSuccess?: () => void;
+  onSuccess?: (post?: any) => void;
 }
+
 
 export default function UploadModal({ onClose, onSuccess }: UploadModalProps) {
   // --- Image state ---
