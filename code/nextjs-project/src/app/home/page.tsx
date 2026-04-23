@@ -62,6 +62,10 @@ export default function HomePage() {
     setSearchTag("");
   };
 
+  const handlePostSuccess = () => {
+    window.location.reload();
+  };
+
   if (status === "loading" || loading) {
     return (
       <div className="home-page" style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "100vh" }}>
@@ -74,7 +78,7 @@ export default function HomePage() {
 
   return (
     <div className="home-page">
-      <Navbar showPost showAvatar />
+      <Navbar showPost showAvatar onPostSuccess={handlePostSuccess} />
 
       <div className="home-search-wrapper">
         <form className="home-search-form" onSubmit={handleSearch}>

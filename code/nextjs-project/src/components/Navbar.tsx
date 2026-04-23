@@ -11,9 +11,10 @@ import "./Navbar.css";
 interface NavbarProps {
   showPost?: boolean;
   showAvatar?: boolean;
+  onPostSuccess?: () => void;
 }
 
-export default function Navbar({ showPost = true, showAvatar = true }: NavbarProps) {
+export default function Navbar({ showPost = true, showAvatar = true, onPostSuccess }: NavbarProps) {
   const [showUpload, setShowUpload] = useState(false);
   const { data: session } = useSession();
   const router = useRouter();
@@ -43,7 +44,7 @@ export default function Navbar({ showPost = true, showAvatar = true }: NavbarPro
         </div>
       </nav>
       {showUpload && (
-        <UploadModal onClose={() => setShowUpload(false)} onSuccess={(p) => console.log("posted", p)} />
+        <UploadModal onClose={() => setShowUpload(false)} onSuccess={onPostSuccess} />
       )}
     </>
   );
