@@ -11,21 +11,39 @@ function getRequiredEnv(name: string): string {
   return value
 }
 
-export function getMinioEndpoint(): string {
-  const endpoint = getRequiredEnv('MINIO_ENDPOINT')
+function isPrivateOrLocalHost(hostname: string): boolean {
+  const normalizedHost = hostname.toLowerCase()
+
+  return (
+    normalizedHost === 'localhost' ||
+    normalizedHost === '127.0.0.1' ||
+    normalizedHost === '::1' ||
+    normalizedHost.endsWith('.local') ||
+    normalizedHost.endsWith('.consul') ||
+    /^10\./.test(normalizedHost) ||
+    /^192\.168\./.test(normalizedHost) ||
+    /^172\.(1[6-9]|2\d|3[0-1])\./.test(normalizedHost)
+  )
+}
+
+function parseMinioEndpoint(rawEndpoint: string): URL {
+  const normalizedEndpoint = /^[a-zA-Z][a-zA-Z\d+\-.]*:\/\//.test(rawEndpoint)
+    ? rawEndpoint
+    : `${isPrivateOrLocalHost(rawEndpoint.split(':')[0]) ? 'http' : 'https'}://${rawEndpoint}`
 
   try {
-    new URL(endpoint)
+    return new URL(normalizedEndpoint)
   } catch {
-    throw new Error('MINIO_ENDPOINT must be a valid absolute URL')
+    throw new Error('MINIO_ENDPOINT must be a valid URL or hostname')
   }
+}
 
-  return endpoint
+export function getMinioEndpoint(): string {
+  return parseMinioEndpoint(getRequiredEnv('MINIO_ENDPOINT')).toString()
 }
 
 export function getMinioClient(): Minio.Client {
-  const endpoint = getMinioEndpoint()
-  const { hostname, port, protocol } = new URL(endpoint)
+  const { hostname, port, protocol } = parseMinioEndpoint(getRequiredEnv('MINIO_ENDPOINT'))
   const isSSL = protocol === 'https:'
 
   return new Minio.Client({
