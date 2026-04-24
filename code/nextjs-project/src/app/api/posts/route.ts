@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { query } from "@/lib/db";
 import { ensureCurrentUser } from "@/lib/current-user";
+import { getPresignedImageUrl } from "@/lib/minio-url";
 
 // GET /api/posts - get all posts for the feed
 export async function GET(request: NextRequest) {
@@ -52,9 +53,9 @@ export async function GET(request: NextRequest) {
     );
 
     // Format posts to match existing Post type
-    const posts = rows.map((row: any) => ({
+    const posts = await Promise.all(rows.map(async (row: any) => ({
       id: row.post_id.toString(),
-      imageUrl: row.image_url,
+      imageUrl: await getPresignedImageUrl(row.image_url),
       description: row.caption,
       tags: row.tags ? row.tags.split(",") : [],
       likesCount: Number(row.likes_count),
@@ -67,7 +68,7 @@ export async function GET(request: NextRequest) {
         avatar: row.author_pic,
       },
       createdAt: row.created_at,
-    }));
+    })));
 
     return NextResponse.json({ posts });
   } catch (error) {

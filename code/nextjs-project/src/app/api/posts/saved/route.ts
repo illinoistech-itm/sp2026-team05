@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import db from "@/lib/db";
+import { getPresignedImageUrl } from "@/lib/minio-url";
 
 // GET /api/posts/saved - get current user's saved posts
 export async function GET(request: NextRequest) {
@@ -23,7 +24,12 @@ export async function GET(request: NextRequest) {
       [userEmail]
     );
 
-    return NextResponse.json({ posts: rows });
+    const posts = await Promise.all(rows.map(async (row: any) => ({
+      ...row,
+      image_url: await getPresignedImageUrl(row.image_url),
+    })));
+
+    return NextResponse.json({ posts });
   } catch (error) {
     console.error("Fetch saved posts error:", error);
     return NextResponse.json({ error: "Server error" }, { status: 500 });
