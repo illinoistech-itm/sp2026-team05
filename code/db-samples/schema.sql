@@ -212,12 +212,12 @@ INSERT INTO users (username, email, password_hash, profile_pic_url) VALUES
   ('Join10',        'join10@gmail.com',           '$2b$12$placeholder_hash_5', NULL);
 
 INSERT INTO posts (user_id, image_url, caption) VALUES
-  (1, 'https://example.com/images/ocean-sunset.jpg',  'Beautiful ocean sunset'),
-  (2, 'https://example.com/images/dolphin.jpg',       'Friendly dolphin'),
-  (3, 'https://example.com/images/ocean-blue.jpg',    'Ocean blues'),
-  (1, 'https://example.com/images/wave.jpg',          'Wave close up'),
-  (4, 'https://example.com/images/sunset2.jpg',       'Sunset at sea'),
-  (5, 'https://example.com/images/dolphin-jump.jpg',  'Dolphin jumping');
+  (1, 'https://system22h026.itm.iit.edu/hjuliano/pic4.jpg', 'Grey Streets'),
+  (2, 'https://system22h026.itm.iit.edu/hjuliano/pic3.jpg', 'Blue Buildings'),
+  (3, 'https://system22h026.itm.iit.edu/hjuliano/pic2.jpg', 'Car lights'),
+  (4, 'https://system22h026.itm.iit.edu/hjuliano/pic1.jpg', 'Blooming flowers'),
+  (5, 'https://system22h026.itm.iit.edu/hjuliano/pic0.jpg', 'Sunset snow'),
+  (6, 'https://system22h026.itm.iit.edu/hjuliano/pic5.jpg', 'Japan crowd');
 
 INSERT INTO hashtags (tag_name) VALUES
   ('city'), ('nature'), ('red'), ('street art'), ('building'), ('night life'), ('sky');
