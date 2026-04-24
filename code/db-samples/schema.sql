@@ -220,15 +220,15 @@ INSERT INTO posts (user_id, image_url, caption) VALUES
   (5, 'https://example.com/images/dolphin-jump.jpg',  'Dolphin jumping');
 
 INSERT INTO hashtags (tag_name) VALUES
-  ('H2O'), ('Sunset'), ('Water'), ('Dolphin'), ('Ocean'), ('Blue'), ('repost'), ('jumps');
+  ('city'), ('nature'), ('red'), ('street art'), ('building'), ('night life'), ('sky');
 
 INSERT INTO post_tags (post_id, tag_id) VALUES
-  (1, 1), (1, 2),
-  (2, 3), (2, 4),
-  (3, 5), (3, 6),
-  (4, 1), (4, 7),
-  (5, 1), (5, 2),
-  (6, 4), (6, 8);
+  (1, 1), (1, 4), (1, 5),
+  (2, 1), (2, 5),
+  (3, 1), (3, 6),
+  (4, 2), (4, 7),
+  (5, 2), (5, 7),
+  (6, 1), (6, 3);
 
 INSERT INTO follows (follower_id, followee_id) VALUES
   (1, 2), (1, 3), (1, 4), (1, 5),
