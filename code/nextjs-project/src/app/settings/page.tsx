@@ -1,60 +1,143 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, Check, X, LogOut } from "lucide-react";
 import { signOut } from "next-auth/react";
-import { currentUser } from "@/lib/mockData";
 import "./settings.css";
 
 type EditField = "username" | "email" | "password" | null;
 
+type SettingsUser = {
+  user_id: number;
+  username: string;
+  email: string;
+};
+
 export default function SettingsPage() {
+  const [user, setUser] = useState<SettingsUser | null>(null);
   const [editing, setEditing] = useState<EditField>(null);
-  const [username, setUsername] = useState(currentUser.username);
-  const [email, setEmail] = useState(currentUser.email);
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [tempValue, setTempValue] = useState("");
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
 
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const res = await fetch("/api/user/profile");
+        const data = await res.json();
+
+        if (!res.ok) {
+          throw new Error(data.error ?? "Failed to load settings.");
+        }
+
+        setUser({
+          user_id: data.user.user_id,
+          username: data.user.username,
+          email: data.user.email,
+        });
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Failed to load settings.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    void fetchUser();
+  }, []);
+
   const startEdit = (field: EditField) => {
+    if (!user) return;
+
     setEditing(field);
     setError("");
     setSuccess("");
-    if (field === "username") setTempValue(username);
-    if (field === "email") setTempValue(email);
+    if (field === "username") setTempValue(user.username);
+    if (field === "email") setTempValue(user.email);
     if (field === "password") { setNewPassword(""); setConfirmPassword(""); }
   };
 
   const cancelEdit = () => { setEditing(null); setError(""); };
 
-  const saveEdit = () => {
+  const saveEdit = async () => {
+    if (!user) return;
+
     if (editing === "username") {
       if (!tempValue.trim()) { setError("Username cannot be empty."); return; }
-      setUsername(tempValue.trim());
-      setSuccess("Username updated!");
+
+      const nextUsername = tempValue.trim();
+
+      try {
+        const res = await fetch("/api/user/profile", {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username: nextUsername }),
+        });
+        const data = await res.json();
+
+        if (!res.ok) {
+          throw new Error(data.error ?? "Failed to update username.");
+        }
+
+        setUser((current) => current ? { ...current, username: nextUsername } : current);
+        setSuccess("Username updated!");
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Failed to update username.");
+        return;
+      }
     }
+
     if (editing === "email") {
       if (!tempValue.includes("@")) { setError("Invalid email."); return; }
-      setEmail(tempValue.trim());
-      setSuccess("Email updated!");
+      setError("Email changes are not supported here yet.");
+      return;
     }
+
     if (editing === "password") {
       if (newPassword.length < 8) { setError("Password must be at least 8 characters."); return; }
       if (newPassword !== confirmPassword) { setError("Passwords do not match."); return; }
-      setSuccess("Password updated!");
+      setError("Password changes are not supported here yet.");
+      return;
     }
+
     setEditing(null);
     setTimeout(() => setSuccess(""), 3000);
   };
 
+  if (loading) {
+    return (
+      <div className="settings-page">
+        <main className="settings-main">
+          <div className="settings-card">Loading settings...</div>
+        </main>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return (
+      <div className="settings-page">
+        <button className="settings-back" onClick={() => router.push("/profile")}>
+          <ArrowLeft size={20} /> Back to Profile
+        </button>
+
+        <main className="settings-main">
+          <div className="settings-card">
+            {error || "Unable to load user settings."}
+          </div>
+        </main>
+      </div>
+    );
+  }
+
   const rows = [
-    { label: "User ID", value: currentUser.id.padStart(10, "0"), field: null as EditField },
-    { label: "UserName", value: username, field: "username" as EditField },
-    { label: "Email", value: email, field: "email" as EditField },
+    { label: "User ID", value: user.user_id.toString(), field: null as EditField },
+    { label: "UserName", value: user.username, field: "username" as EditField },
+    { label: "Email", value: user.email, field: "email" as EditField },
     { label: "Password", value: "****************", field: "password" as EditField },
   ];
 
@@ -110,7 +193,7 @@ export default function SettingsPage() {
                     )}
                     {error && <p className="settings-input-error">{error}</p>}
                     <div className="settings-edit-actions">
-                      <button className="settings-save-btn" onClick={saveEdit}>
+                      <button className="settings-save-btn" onClick={() => void saveEdit()}>
                         <Check size={12} /> Save
                       </button>
                       <button className="settings-cancel-btn" onClick={cancelEdit}>
