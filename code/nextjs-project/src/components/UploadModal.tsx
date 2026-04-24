@@ -3,6 +3,7 @@
 import React, { useState, useRef, useCallback, useEffect } from "react";
 import { X, CloudUpload } from "lucide-react";
 import { uploadImage, validateImageFile, createImagePreview, revokeImagePreview } from "@/lib/upload";
+import { labelImageFromUrl } from "@/lib/image-labeler";
 import "./UploadModal.css";
 
 interface UploadModalProps {
@@ -23,10 +24,13 @@ export default function UploadModal({ onClose, onSuccess }: UploadModalProps) {
   const [tags, setTags] = useState<string[]>([]);
   const [tagInput, setTagInput] = useState("");
   const [description, setDescription] = useState("");
+  const [labelSuggestions, setLabelSuggestions] = useState<string[]>([]);
+  const [isLabeling, setIsLabeling] = useState(false);
 
   // --- Upload lifecycle ---
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const labelingRequestRef = useRef(0);
 
   // Hidden <input type="file"> triggered by clicking the drop zone
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -108,6 +112,44 @@ export default function UploadModal({ onClose, onSuccess }: UploadModalProps) {
     setTags((prev) => prev.filter((t) => t !== tag));
   };
 
+  const addTag = useCallback((tag: string) => {
+    const cleanTag = tag.trim().replace(/^#/, "").toLowerCase();
+    if (!cleanTag) return;
+
+    setTags((prev) => (prev.includes(cleanTag) ? prev : [...prev, cleanTag]));
+  }, []);
+
+  const addAllSuggestedTags = () => {
+    labelSuggestions.forEach(addTag);
+  };
+
+  useEffect(() => {
+    if (!previewUrl) {
+      setLabelSuggestions([]);
+      setIsLabeling(false);
+      return;
+    }
+
+    const requestId = labelingRequestRef.current + 1;
+    labelingRequestRef.current = requestId;
+    setIsLabeling(true);
+
+    labelImageFromUrl(previewUrl)
+      .then(({ suggestions }) => {
+        if (labelingRequestRef.current !== requestId) return;
+        setLabelSuggestions(suggestions);
+      })
+      .catch((err) => {
+        if (labelingRequestRef.current !== requestId) return;
+        console.error("Image labeling failed:", err);
+        setLabelSuggestions([]);
+      })
+      .finally(() => {
+        if (labelingRequestRef.current !== requestId) return;
+        setIsLabeling(false);
+      });
+  }, [previewUrl]);
+
   // --- Form submission ---
 
   const handleSubmit = async () => {
@@ -188,6 +230,37 @@ export default function UploadModal({ onClose, onSuccess }: UploadModalProps) {
 
         {/* Tags input — pill-style multi-value field */}
         <div className="upload-tags-box">
+          {(isLabeling || labelSuggestions.length > 0) && (
+            <div className="upload-ai-tags">
+              <div className="upload-ai-tags-header">
+                <span>AI label suggestions</span>
+                {labelSuggestions.length > 0 && (
+                  <button type="button" onClick={addAllSuggestedTags}>
+                    Add all
+                  </button>
+                )}
+              </div>
+
+              {isLabeling ? (
+                <p className="upload-ai-tags-status">Analyzing image…</p>
+              ) : (
+                <div className="upload-ai-tags-list">
+                  {labelSuggestions.map((tag) => (
+                    <button
+                      key={tag}
+                      type="button"
+                      className="upload-ai-tag-btn"
+                      onClick={() => addTag(tag)}
+                      disabled={tags.includes(tag)}
+                    >
+                      #{tag}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
           <div className="upload-tags-pills">
             {tags.map((tag) => (
               // Each committed tag renders as a removable pill

@@ -217,7 +217,7 @@ INSERT INTO posts (user_id, image_url, caption) VALUES
   (3, 'https://system22h026.itm.iit.edu/hjuliano/pic2.jpg', 'Car lights'),
   (4, 'https://system22h026.itm.iit.edu/hjuliano/pic1.jpg', 'Blooming flowers'),
   (5, 'https://system22h026.itm.iit.edu/hjuliano/pic0.jpg', 'Sunset snow'),
-  (6, 'https://system22h026.itm.iit.edu/hjuliano/pic5.jpg', 'Japan crowd');
+  (1, 'https://system22h026.itm.iit.edu/hjuliano/pic5.jpg', 'Japan crowd');
 
 INSERT INTO hashtags (tag_name) VALUES
   ('city'), ('nature'), ('red'), ('street art'), ('building'), ('night life'), ('sky');

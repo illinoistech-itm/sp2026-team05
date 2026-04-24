@@ -81,6 +81,69 @@
   background: rgba(255, 255, 255, 0.9);
 }
 
+.upload-ai-tags {
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.upload-ai-tags-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #1a1a1a;
+}
+
+.upload-ai-tags-header button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #007a75;
+  font-family: inherit;
+  font-size: 0.75rem;
+}
+
+.upload-ai-tags-status {
+  margin: 0;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.75rem;
+  color: #4b5563;
+}
+
+.upload-ai-tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.upload-ai-tag-btn {
+  border: 1px solid rgba(0, 122, 117, 0.25);
+  background: rgba(0, 191, 179, 0.12);
+  color: #0f172a;
+  border-radius: 9999px;
+  padding: 4px 10px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s, opacity 0.2s;
+}
+
+.upload-ai-tag-btn:hover {
+  background: rgba(0, 191, 179, 0.2);
+  transform: scale(1.02);
+}
+
+.upload-ai-tag-btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
 .upload-tags-pills {
   display: flex;
   flex-wrap: wrap;
