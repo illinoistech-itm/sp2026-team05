@@ -25,7 +25,7 @@ export default function Navbar({ showPost = true, showAvatar = true, onPostSucce
   return (
     <>
       <nav className="navbar">
-        <Logo size={55} href="/home" />
+        <Logo size={55} href="/home" forceReload />
         <div className="navbar-actions">
           {showPost && (
             <button className="navbar-post-btn" onClick={() => setShowUpload(true)}>

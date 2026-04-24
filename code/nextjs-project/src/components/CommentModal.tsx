@@ -41,19 +41,28 @@ export default function CommentModal({ post, onClose }: CommentModalProps) {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); handleSubmit(); }
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmit();
+    }
     if (e.key === "Escape") onClose();
   };
 
   return (
     <div className="comment-overlay" onClick={onClose}>
       <div className="comment-modal" onClick={(e) => e.stopPropagation()}>
-
         {/* Header */}
         <div className="comment-modal-header">
           <div className="comment-modal-author">
-            <Avatar src={post.author.avatar} username={post.author.username} size={36} showRing />
-            <span className="comment-modal-username">{post.author.username}</span>
+            <Avatar
+              src={post.author.avatar}
+              username={post.author.username}
+              size={36}
+              showRing
+            />
+            <span className="comment-modal-username">
+              {post.author.username}
+            </span>
           </div>
           <button className="comment-modal-close" onClick={onClose}>
             <X size={20} />
@@ -80,9 +89,15 @@ export default function CommentModal({ post, onClose }: CommentModalProps) {
           ) : (
             comments.map((comment) => (
               <div key={comment.id} className="comment-item">
-                <Avatar src={comment.author.avatar} username={comment.author.username} size={32} />
+                <Avatar
+                  src={comment.author.avatar}
+                  username={comment.author.username}
+                  size={32}
+                />
                 <div className="comment-item-bubble">
-                  <span className="comment-item-author">{comment.author.username}</span>
+                  <span className="comment-item-author">
+                    {comment.author.username}
+                  </span>
                   <p className="comment-item-text">{comment.text}</p>
                 </div>
               </div>
@@ -92,7 +107,12 @@ export default function CommentModal({ post, onClose }: CommentModalProps) {
 
         {/* Input */}
         <div className="comment-modal-input-row">
-          <Avatar src={currentUser.avatar} username={currentUser.username} size={32} showRing />
+          <Avatar
+            src={currentUser.avatar}
+            username={currentUser.username}
+            size={32}
+            showRing
+          />
           <input
             ref={inputRef}
             type="text"
